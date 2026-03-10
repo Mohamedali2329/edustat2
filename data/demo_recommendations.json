@@ -1,0 +1,292 @@
+{
+  "M_155.0": {
+    "Filiere": {
+      "1": "Cycle Préparatoire Intégré",
+      "2": "Licence en Sciences Infirmières (Femmes)",
+      "3": "Licence en Soins d'Urgence et Réanimation",
+      "4": "Licence en Physiothérapie",
+      "5": "Licence en Biologie Médicale"
+    },
+    "Universite": {
+      "1": "Université de Sfax",
+      "2": "Université de Sfax",
+      "3": "Université de Sousse",
+      "4": "Université de Tunis El Manar",
+      "5": "Université de Monastir"
+    },
+    "Etablissement": {
+      "1": "Faculté des Sciences de Sfax",
+      "2": "Institut Supérieur des Sciences Infirmières de Sfax",
+      "3": "ESSTSS - École Supérieure des Sciences et Techniques de la Santé de Sousse",
+      "4": "ESSTST - École Supérieure des Sciences et Techniques de la Santé de Tunis",
+      "5": "ESSTSS - École Supérieure des Sciences et Techniques de la Santé de Monastir"
+    },
+    "Domaine": {
+      "1": "Autres",
+      "2": "Autres",
+      "3": "Sciences Humaines",
+      "4": "Autres",
+      "5": "Sciences Fondamentales"
+    },
+    "Seuil_2025": {
+      "1": 154.8317,
+      "2": 153.6895,
+      "3": 152.5339,
+      "4": 152.1273,
+      "5": 150.2494
+    },
+    "Moyenne_Hist": {
+      "1": 156.9521,
+      "2": 152.2896,
+      "3": 144.776,
+      "4": 156.5746,
+      "5": 144.6268
+    },
+    "Marge": {
+      "1": 0.1682999999999879,
+      "2": 1.3104999999999905,
+      "3": 2.4661000000000115,
+      "4": 2.872700000000009,
+      "5": 4.7505999999999915
+    },
+    "Compat_%": {
+      "1": 0.11,
+      "2": 0.85,
+      "3": 1.62,
+      "4": 1.89,
+      "5": 3.16
+    }
+  },
+  "S_120.0": {
+    "Filiere": {
+      "1": "Licence en Français",
+      "2": "Licence en Commerce et Distribution",
+      "3": "Licence en Informatique de Gestion",
+      "4": "Licence en Génie Mécanique",
+      "5": "Licence en Sciences Économiques"
+    },
+    "Universite": {
+      "1": "Université de La Manouba",
+      "2": "Université de Gabès",
+      "3": "Université de Sfax",
+      "4": "Université de Gabès",
+      "5": "Université de Carthage"
+    },
+    "Etablissement": {
+      "1": "FLAHM - Faculté des Lettres, des Arts et des Humanités de La Manouba",
+      "2": "ISET Ksar Hellal - Institut Supérieur des Études Technologiques de Ksar Hellal",
+      "3": "Institut Supérieur de Gestion Industrielle de Sfax",
+      "4": "ISET Nabeul - Institut Supérieur des Études Technologiques de Nabeul",
+      "5": "Faculté des Sciences Économiques et de Gestion de Nabeul"
+    },
+    "Domaine": {
+      "1": "Lettres & Langues",
+      "2": "Économie & Gestion",
+      "3": "Informatique & Tech",
+      "4": "Ingénierie & Génie",
+      "5": "Autres"
+    },
+    "Seuil_2025": {
+      "1": 119.7972,
+      "2": 119.735,
+      "3": 119.6474,
+      "4": 119.635,
+      "5": 119.6207
+    },
+    "Moyenne_Hist": {
+      "1": 118.9875,
+      "2": 122.5508,
+      "3": 125.0195,
+      "4": 117.5939,
+      "5": 124.0364
+    },
+    "Marge": {
+      "1": 0.20279999999999632,
+      "2": 0.26500000000000057,
+      "3": 0.35259999999999536,
+      "4": 0.3649999999999949,
+      "5": 0.37930000000000064
+    },
+    "Compat_%": {
+      "1": 0.17,
+      "2": 0.22,
+      "3": 0.29,
+      "4": 0.31,
+      "5": 0.32
+    }
+  },
+  "L_98.0": {
+    "Filiere": {
+      "1": "Licence en Arabe",
+      "2": "Licence en Arabe",
+      "3": "Licence en Philosophie",
+      "4": "Licence en Communication",
+      "5": "Licence en Arabe"
+    },
+    "Universite": {
+      "1": "Université de Tunis El Manar",
+      "2": "Université de Gabès",
+      "3": "Université de Tunis El Manar",
+      "4": "Université de La Manouba",
+      "5": "Université de La Manouba"
+    },
+    "Etablissement": {
+      "1": "Institut Supérieur des Sciences Humaines de Tunis",
+      "2": "Institut Supérieur des Langues de Gabès",
+      "3": "Institut Supérieur des Sciences Humaines de Tunis",
+      "4": "IPSI - Institut de Presse et des Sciences de l'Information",
+      "5": "FLAHM - Faculté des Lettres, des Arts et des Humanités de La Manouba"
+    },
+    "Domaine": {
+      "1": "Lettres & Langues",
+      "2": "Lettres & Langues",
+      "3": "Sciences Humaines",
+      "4": "Autres",
+      "5": "Lettres & Langues"
+    },
+    "Seuil_2025": {
+      "1": 97.7378,
+      "2": 97.7301,
+      "3": 97.3913,
+      "4": 97.3269,
+      "5": 97.0651
+    },
+    "Moyenne_Hist": {
+      "1": 97.3992,
+      "2": 95.6677,
+      "3": 98.0454,
+      "4": 98.4178,
+      "5": 94.893
+    },
+    "Marge": {
+      "1": 0.2622000000000071,
+      "2": 0.2699000000000069,
+      "3": 0.6086999999999989,
+      "4": 0.6731000000000051,
+      "5": 0.934899999999999
+    },
+    "Compat_%": {
+      "1": 0.27,
+      "2": 0.28,
+      "3": 0.63,
+      "4": 0.69,
+      "5": 0.96
+    }
+  },
+  "I_140.0": {
+    "Filiere": {
+      "1": "Licence en Électronique, Électrotechnique et Automatique",
+      "2": "Licence en Éducation et Enseignement",
+      "3": "Licence en Comptabilité et Finance",
+      "4": "Licence en Éducation et Enseignement",
+      "5": "Licence en Mathématiques"
+    },
+    "Universite": {
+      "1": "Université de Monastir",
+      "2": "Université de Jendouba",
+      "3": "Université de Gabès",
+      "4": "Université de Jendouba",
+      "5": "Université de Sousse"
+    },
+    "Etablissement": {
+      "1": "ISIMM - Institut Supérieur d'Informatique et de Mathématiques de Monastir",
+      "2": "Institut Supérieur des Études Appliquées en Humanités du Kef",
+      "3": "ISET Radès - Institut Supérieur des Études Technologiques de Radès",
+      "4": "Institut Supérieur des Sciences Humaines de Jendouba",
+      "5": "École Supérieure des Sciences et de la Technologie de Hammam Sousse"
+    },
+    "Domaine": {
+      "1": "Ingénierie & Génie",
+      "2": "Autres",
+      "3": "Économie & Gestion",
+      "4": "Autres",
+      "5": "Sciences Fondamentales"
+    },
+    "Seuil_2025": {
+      "1": 139.86,
+      "2": 139.78,
+      "3": 139.6939,
+      "4": 139.67,
+      "5": 139.53
+    },
+    "Moyenne_Hist": {
+      "1": 122.5421,
+      "2": 124.3869,
+      "3": 132.9021,
+      "4": 120.4962,
+      "5": 138.4179
+    },
+    "Marge": {
+      "1": 0.13999999999998636,
+      "2": 0.21999999999999886,
+      "3": 0.3060999999999865,
+      "4": 0.3300000000000125,
+      "5": 0.46999999999999886
+    },
+    "Compat_%": {
+      "1": 0.1,
+      "2": 0.16,
+      "3": 0.22,
+      "4": 0.24,
+      "5": 0.34
+    }
+  },
+  "E_100.0": {
+    "Filiere": {
+      "1": "Licence en Commerce et Distribution",
+      "2": "Licence en Italien",
+      "3": "Licence en Informatique de Gestion",
+      "4": "Licence en Commerce et Distribution",
+      "5": "Licence en Cinéma et Audiovisuel"
+    },
+    "Universite": {
+      "1": "Université de Gabès",
+      "2": "Université de Carthage",
+      "3": "Université de Gafsa",
+      "4": "Université de Gabès",
+      "5": "Université de La Manouba"
+    },
+    "Etablissement": {
+      "1": "ISET Djerba - Institut Supérieur des Études Technologiques de Djerba",
+      "2": "Institut Supérieur des Langues de Tunis",
+      "3": "Institut Supérieur d'Administration des Entreprises de Gafsa",
+      "4": "ISET Sfax - Institut Supérieur des Études Technologiques de Sfax",
+      "5": "ISAMM - Institut Supérieur des Arts Multimédia de La Manouba"
+    },
+    "Domaine": {
+      "1": "Économie & Gestion",
+      "2": "Autres",
+      "3": "Informatique & Tech",
+      "4": "Économie & Gestion",
+      "5": "Arts & Architecture"
+    },
+    "Seuil_2025": {
+      "1": 99.9785,
+      "2": 99.9701,
+      "3": 99.7045,
+      "4": 99.7026,
+      "5": 99.5299
+    },
+    "Moyenne_Hist": {
+      "1": 101.2918,
+      "2": 103.5282,
+      "3": 95.989,
+      "4": 98.5407,
+      "5": 112.565
+    },
+    "Marge": {
+      "1": 0.021500000000003183,
+      "2": 0.029899999999997817,
+      "3": 0.2955000000000041,
+      "4": 0.2973999999999961,
+      "5": 0.4701000000000022
+    },
+    "Compat_%": {
+      "1": 0.02,
+      "2": 0.03,
+      "3": 0.3,
+      "4": 0.3,
+      "5": 0.47
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "model_name": "XGB",
+  "metrics": {
+    "accuracy": 0.6024,
+    "f1_weighted": 0.6036,
+    "precision_weighted": 0.6221,
+    "recall_weighted": 0.6024
+  },
+  "best_params": {
+    "classifier__learning_rate": 0.05,
+    "classifier__max_depth": 4,
+    "classifier__n_estimators": 100
+  },
+  "feature_cols": [
+    "Section_Enc",
+    "Score_2022",
+    "Score_2023",
+    "Score_2024",
+    "Score_2025",
+    "Score_Mean",
+    "Score_Trend",
+    "Score_Stability",
+    "Score_Max",
+    "Score_Min",
+    "Universite_Enc",
+    "Etablissement_Enc"
+  ],
+  "target_classes": [
+    "Agronomie & Environnement",
+    "Arts & Architecture",
+    "Autres",
+    "Droit & Sciences Sociales",
+    "Informatique & Tech",
+    "Ingénierie & Génie",
+    "Lettres & Langues",
+    "Médecine & Santé",
+    "Sciences Fondamentales",
+    "Sciences Humaines",
+    "Économie & Gestion"
+  ]
+}
