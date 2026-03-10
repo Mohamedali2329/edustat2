@@ -1,17 +1,16 @@
                            precision    recall  f1-score   support
 
-Agronomie & Environnement       0.00      0.00      0.00         1
-      Arts & Architecture       0.85      0.85      0.85        74
-                   Autres       0.66      0.41      0.51       112
-Droit & Sciences Sociales       0.31      0.65      0.42        17
-      Informatique & Tech       0.64      0.57      0.60        77
-       Ingénierie & Génie       0.59      0.64      0.61        78
-        Lettres & Langues       0.59      0.59      0.59        70
-         Médecine & Santé       0.60      0.75      0.67         8
-   Sciences Fondamentales       0.59      0.74      0.66        43
-        Sciences Humaines       0.45      0.43      0.44        30
-       Économie & Gestion       0.55      0.62      0.58        66
+Agronomie & Environnement       0.83      0.83      0.83         6
+      Arts & Architecture       0.96      0.96      0.96        75
+Droit & Sciences Sociales       0.76      0.68      0.72        19
+       Economie & Gestion       0.69      0.76      0.72        78
+      Informatique & Tech       0.78      0.68      0.73        88
+       Ingenierie & Genie       0.80      0.76      0.78       110
+        Lettres & Langues       0.83      0.92      0.88        76
+         Medecine & Sante       0.81      0.96      0.88        27
+   Sciences Fondamentales       0.84      0.82      0.83        44
+        Sciences Humaines       0.75      0.72      0.73        53
 
-                 accuracy                           0.60       576
-                macro avg       0.53      0.57      0.54       576
-             weighted avg       0.62      0.60      0.60       576
+                 accuracy                           0.80       576
+                macro avg       0.81      0.81      0.81       576
+             weighted avg       0.80      0.80      0.80       576

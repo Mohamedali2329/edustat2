@@ -1,4 +1,4 @@
-# EduStat TN — Orientation Universitaire 🎓
+# EduStat TN — Orientation Universitaire
 
 > Système intelligent de recommandation et de prédiction de filières universitaires tunisiennes, basé sur les données historiques d'admission 2022–2025.
 
@@ -9,7 +9,7 @@
 
 ---
 
-## 📁 Structure du Projet
+## Structure du Projet
 
 ```
 edustat2/
@@ -33,7 +33,7 @@ edustat2/
 
 ---
 
-## 🚀 Démarrage Rapide
+## Démarrage Rapide
 
 ### 1. Installer les dépendances
 
@@ -92,7 +92,7 @@ mlflow ui --backend-store-uri file:///CHEMIN_ABSOLU/edustat2/data/mlruns --port 
 
 ---
 
-## 🔌 API Endpoints
+## API Endpoints
 
 | Méthode | Route            | Description                        |
 | ------- | ---------------- | ---------------------------------- |
@@ -121,7 +121,7 @@ curl -X POST http://127.0.0.1:8000/api/predict \
 
 ---
 
-## 🤖 Pipeline ML
+## Pipeline ML
 
 | Étape                | Détail                                                         |
 | -------------------- | -------------------------------------------------------------- |
@@ -136,16 +136,16 @@ curl -X POST http://127.0.0.1:8000/api/predict \
 
 ---
 
-## 📊 Résultats
+## Résultats
 
-| Modèle                 | Accuracy   | F1 (weighted) | Précision  | Rappel     |
-| ---------------------- | ---------- | ------------- | ---------- | ---------- |
-| Random Forest + SMOTE  | 0.5538     | 0.5499        | 0.5604     | 0.5538     |
-| **XGBoost + SMOTE** ✅ | **0.6024** | **0.6036**    | **0.6221** | **0.6024** |
+| Modèle                | Accuracy   | F1 (weighted) | Précision  | Rappel     |
+| --------------------- | ---------- | ------------- | ---------- | ---------- |
+| Random Forest + SMOTE | 0.5538     | 0.5499        | 0.5604     | 0.5538     |
+| **XGBoost + SMOTE**   | **0.6024** | **0.6036**    | **0.6221** | **0.6024** |
 
 ---
 
-## 🗃️ Dataset
+## Dataset
 
 - **Source** : Données officielles d'orientation universitaire tunisienne
 - **Période** : 2022 – 2025
@@ -153,7 +153,7 @@ curl -X POST http://127.0.0.1:8000/api/predict \
 
 ---
 
-## 📦 Dépendances Principales
+## Dépendances Principales
 
 ```
 fastapi        # API REST

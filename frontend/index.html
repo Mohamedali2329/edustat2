@@ -4,21 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EduStat TN — Orientation Universitaire</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
-        --primary: #e63946;
-        --primary-d: #c1121f;
-        --accent: #457b9d;
-        --accent-d: #1d3557;
-        --bg: #f8f9fa;
+        --bg: #f5f6f8;
+        --bg-alt: #ebedf0;
         --card: #ffffff;
-        --text: #212529;
-        --muted: #6c757d;
-        --border: #dee2e6;
-        --success: #2a9d8f;
-        --warning: #e9c46a;
-        --radius: 12px;
-        --shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+        --text: #1a1d23;
+        --text-secondary: #5f6470;
+        --border: #dfe1e6;
+        --border-light: #ecedf0;
+        --accent: #2563eb;
+        --accent-hover: #1d4ed8;
+        --accent-subtle: #eff4ff;
+        --success: #16a34a;
+        --success-bg: #f0fdf4;
+        --warning: #ca8a04;
+        --warning-bg: #fefce8;
+        --danger: #dc2626;
+        --danger-bg: #fef2f2;
+        --info: #0891b2;
+        --info-bg: #ecfeff;
+        --nav-bg: #0f172a;
+        --nav-surface: rgba(255, 255, 255, 0.06);
+        --radius: 8px;
+        --radius-lg: 12px;
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+        --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+        --mono: "JetBrains Mono", "Cascadia Code", "Fira Code", monospace;
+        --transition: 150ms ease;
       }
 
       * {
@@ -29,250 +49,310 @@
 
       body {
         font-family:
-          "Segoe UI",
+          "Inter",
           system-ui,
           -apple-system,
           sans-serif;
         background: var(--bg);
         color: var(--text);
         min-height: 100vh;
+        font-size: 14px;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
       }
 
-      /* ── NAV ───────────────────────────────────────────── */
-      nav {
-        background: linear-gradient(
-          135deg,
-          var(--accent-d) 0%,
-          var(--primary-d) 100%
-        );
-        padding: 0 2rem;
+      /* ── HEADER ────────────────────────────────────────── */
+      .header {
+        background: var(--nav-bg);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .header-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 64px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+        height: 52px;
       }
-      .nav-logo {
+      .header-left {
         display: flex;
         align-items: center;
         gap: 0.75rem;
       }
-      .nav-logo .logo-icon {
-        width: 38px;
-        height: 38px;
-        background: var(--primary);
-        border-radius: 8px;
+      .header-logo {
+        width: 32px;
+        height: 32px;
+        background: var(--accent);
+        border-radius: 6px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.3rem;
-      }
-      .nav-logo h1 {
         color: #fff;
-        font-size: 1.25rem;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-      }
-      .nav-logo span {
-        color: rgba(255, 255, 255, 0.65);
-        font-size: 0.8rem;
-      }
-      .nav-badge {
-        background: rgba(255, 255, 255, 0.15);
-        color: #fff;
-        border-radius: 20px;
-        padding: 0.3rem 0.8rem;
-        font-size: 0.78rem;
-        border: 1px solid rgba(255, 255, 255, 0.25);
-      }
-
-      /* ── HERO ──────────────────────────────────────────── */
-      .hero {
-        background: linear-gradient(
-          135deg,
-          var(--accent-d) 0%,
-          var(--primary-d) 100%
-        );
-        color: #fff;
-        text-align: center;
-        padding: 3rem 1rem 4rem;
-      }
-      .hero h2 {
-        font-size: clamp(1.6rem, 4vw, 2.4rem);
         font-weight: 800;
-        margin-bottom: 0.6rem;
+        font-size: 0.85rem;
+        letter-spacing: -0.5px;
       }
-      .hero p {
-        opacity: 0.8;
-        font-size: 1rem;
-        max-width: 550px;
-        margin: 0 auto;
+      .header-title {
+        color: #fff;
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: -0.2px;
       }
-
-      /* ── STATS BAR ─────────────────────────────────────── */
-      .stats-bar {
+      .header-subtitle {
+        color: rgba(255, 255, 255, 0.45);
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+      .header-right {
         display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
+        align-items: center;
         gap: 1rem;
-        padding: 1.5rem 2rem;
-        background: var(--accent-d);
-        border-bottom: 3px solid var(--primary);
       }
-      .stat-chip {
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
-        padding: 0.5rem 1.2rem;
-        color: #fff;
-        text-align: center;
-        transition: background 0.2s;
+      .status-pill {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: var(--nav-surface);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 0.3rem 0.75rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.7);
+        font-family: var(--mono);
       }
-      .stat-chip:hover {
-        background: rgba(255, 255, 255, 0.18);
+      .status-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--success);
+        box-shadow: 0 0 6px rgba(22, 163, 74, 0.5);
+        animation: pulse-dot 2s infinite;
       }
-      .stat-chip .num {
-        font-size: 1.4rem;
-        font-weight: 800;
-        display: block;
+      .status-dot.offline {
+        background: var(--danger);
+        box-shadow: 0 0 6px rgba(220, 38, 38, 0.5);
+        animation: none;
       }
-      .stat-chip .lbl {
-        font-size: 0.72rem;
-        opacity: 0.75;
+      @keyframes pulse-dot {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+      .version-tag {
+        color: rgba(255, 255, 255, 0.35);
+        font-size: 0.7rem;
+        font-family: var(--mono);
+        font-weight: 500;
       }
 
-      /* ── MAIN LAYOUT ───────────────────────────────────── */
-      .container {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 2rem 1.5rem;
-      }
-
-      /* ── SEARCH CARD ───────────────────────────────────── */
-      .search-card {
+      /* ── METRICS BAR ───────────────────────────────────── */
+      .metrics-bar {
         background: var(--card);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        padding: 2rem;
-        margin-bottom: 2rem;
+        border-bottom: 1px solid var(--border);
+        padding: 0.75rem 1.5rem;
       }
-      .search-card h3 {
-        font-size: 1.1rem;
+      .metrics-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        gap: 2rem;
+        overflow-x: auto;
+      }
+      .metric-item {
+        display: flex;
+        align-items: baseline;
+        gap: 0.5rem;
+        white-space: nowrap;
+      }
+      .metric-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text-secondary);
+      }
+      .metric-value {
+        font-family: var(--mono);
+        font-size: 0.85rem;
         font-weight: 700;
-        color: var(--accent-d);
-        margin-bottom: 1.4rem;
+        color: var(--text);
+      }
+
+      /* ── LAYOUT ────────────────────────────────────────── */
+      .main {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 1.5rem;
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 1.5rem;
+        align-items: start;
+      }
+      @media (max-width: 900px) {
+        .main {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ── SIDEBAR (SEARCH PANEL) ────────────────────────── */
+      .sidebar {
+        position: sticky;
+        top: calc(52px + 1.5rem);
+      }
+      .panel {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        overflow: hidden;
+      }
+      .panel-header {
+        padding: 0.85rem 1.15rem;
+        border-bottom: 1px solid var(--border);
         display: flex;
         align-items: center;
         gap: 0.5rem;
       }
-      .form-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
-        align-items: end;
+      .panel-header h3 {
+        font-size: 0.82rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        color: var(--text);
       }
-      .form-group {
+      .panel-body {
+        padding: 1.15rem;
         display: flex;
         flex-direction: column;
-        gap: 0.4rem;
+        gap: 1rem;
       }
-      .form-group label {
-        font-size: 0.82rem;
+
+      /* ── FORM ──────────────────────────────────────────── */
+      .field label {
+        display: block;
+        font-size: 0.75rem;
         font-weight: 600;
-        color: var(--muted);
+        color: var(--text-secondary);
+        margin-bottom: 0.35rem;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.3px;
       }
-      .form-group select,
-      .form-group input {
-        border: 2px solid var(--border);
-        border-radius: 8px;
-        padding: 0.65rem 0.9rem;
-        font-size: 0.95rem;
+      .field select,
+      .field input {
+        width: 100%;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 0.55rem 0.75rem;
+        font-size: 0.85rem;
         color: var(--text);
-        transition:
-          border-color 0.2s,
-          box-shadow 0.2s;
-        outline: none;
         background: var(--bg);
+        outline: none;
+        transition:
+          border-color var(--transition),
+          box-shadow var(--transition);
+        font-family: inherit;
       }
-      .form-group select:focus,
-      .form-group input:focus {
-        border-color: var(--primary);
-        box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.12);
+      .field select:focus,
+      .field input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+      }
+      .field input::placeholder {
+        color: #9ca3af;
+      }
+
+      .actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding-top: 0.5rem;
       }
 
       .btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 0.5rem;
+        gap: 0.4rem;
         border: none;
-        border-radius: 8px;
+        border-radius: var(--radius);
         cursor: pointer;
-        font-size: 0.95rem;
-        font-weight: 700;
-        padding: 0.72rem 1.6rem;
-        transition: all 0.2s;
+        font-size: 0.82rem;
+        font-weight: 600;
+        padding: 0.6rem 1rem;
+        transition: all var(--transition);
+        font-family: inherit;
         text-decoration: none;
       }
       .btn-primary {
-        background: var(--primary);
-        color: #fff;
-      }
-      .btn-primary:hover {
-        background: var(--primary-d);
-        transform: translateY(-1px);
-        box-shadow: 0 4px 16px rgba(230, 57, 70, 0.35);
-      }
-      .btn-secondary {
         background: var(--accent);
         color: #fff;
       }
+      .btn-primary:hover {
+        background: var(--accent-hover);
+        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+      }
+      .btn-secondary {
+        background: var(--bg);
+        color: var(--text);
+        border: 1px solid var(--border);
+      }
       .btn-secondary:hover {
-        background: var(--accent-d);
+        background: var(--bg-alt);
+        border-color: #c4c7cd;
       }
-      .btn-outline {
+      .btn-ghost {
         background: transparent;
-        color: var(--primary);
-        border: 2px solid var(--primary);
+        color: var(--text-secondary);
+        font-size: 0.78rem;
       }
-      .btn-outline:hover {
-        background: var(--primary);
-        color: #fff;
+      .btn-ghost:hover {
+        color: var(--danger);
       }
       .btn:disabled {
         opacity: 0.5;
         cursor: not-allowed;
-        transform: none !important;
+      }
+
+      /* ── CONTENT AREA ──────────────────────────────────── */
+      .content {
+        min-width: 0;
       }
 
       /* ── TABS ──────────────────────────────────────────── */
       .tabs {
         display: flex;
-        gap: 0.5rem;
-        margin-bottom: 1.5rem;
-        flex-wrap: wrap;
+        gap: 0;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid var(--border);
       }
       .tab-btn {
-        padding: 0.55rem 1.2rem;
-        border-radius: 8px;
-        border: 2px solid var(--border);
-        background: var(--card);
+        padding: 0.65rem 1rem;
+        border: none;
+        background: transparent;
         cursor: pointer;
-        font-size: 0.88rem;
+        font-size: 0.82rem;
         font-weight: 600;
-        color: var(--muted);
-        transition: all 0.2s;
+        color: var(--text-secondary);
+        transition: all var(--transition);
+        border-bottom: 2px solid transparent;
+        margin-bottom: -2px;
+        font-family: inherit;
       }
       .tab-btn.active {
-        border-color: var(--primary);
-        background: var(--primary);
-        color: #fff;
+        color: var(--accent);
+        border-bottom-color: var(--accent);
       }
       .tab-btn:hover:not(.active) {
-        border-color: var(--primary);
-        color: var(--primary);
+        color: var(--text);
       }
       .tab-panel {
         display: none;
@@ -283,34 +363,33 @@
 
       /* ── ALERT ─────────────────────────────────────────── */
       .alert {
-        padding: 1rem 1.2rem;
-        border-radius: 8px;
-        margin-bottom: 1.2rem;
-        font-size: 0.9rem;
+        padding: 0.75rem 1rem;
+        border-radius: var(--radius);
+        margin-bottom: 1rem;
+        font-size: 0.82rem;
         font-weight: 500;
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
+        line-height: 1.5;
+        border: 1px solid transparent;
       }
       .alert-error {
-        background: #fff5f5;
-        border-left: 4px solid var(--primary);
-        color: #9b1c1c;
+        background: var(--danger-bg);
+        border-color: #fecaca;
+        color: #991b1b;
       }
       .alert-warning {
-        background: #fffbeb;
-        border-left: 4px solid var(--warning);
-        color: #78350f;
+        background: var(--warning-bg);
+        border-color: #fde68a;
+        color: #854d0e;
       }
       .alert-success {
-        background: #f0fdf4;
-        border-left: 4px solid var(--success);
-        color: #14532d;
+        background: var(--success-bg);
+        border-color: #bbf7d0;
+        color: #166534;
       }
       .alert-info {
-        background: #eff6ff;
-        border-left: 4px solid var(--accent);
-        color: #1e3a5f;
+        background: var(--info-bg);
+        border-color: #a5f3fc;
+        color: #155e75;
       }
 
       /* ── LOADER ────────────────────────────────────────── */
@@ -320,421 +399,595 @@
         padding: 3rem 1rem;
       }
       .spinner {
-        width: 46px;
-        height: 46px;
-        border: 4px solid var(--border);
-        border-top-color: var(--primary);
+        width: 28px;
+        height: 28px;
+        border: 3px solid var(--border);
+        border-top-color: var(--accent);
         border-radius: 50%;
-        animation: spin 0.8s linear infinite;
-        margin: 0 auto 1rem;
+        animation: spin 0.7s linear infinite;
+        margin: 0 auto 0.75rem;
       }
       @keyframes spin {
         to {
           transform: rotate(360deg);
         }
       }
+      .loader p {
+        font-size: 0.78rem;
+        color: var(--text-secondary);
+      }
 
-      /* ── RESULTS TABLE ─────────────────────────────────── */
+      /* ── TABLE ─────────────────────────────────────────── */
       .results-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         flex-wrap: wrap;
-        gap: 0.8rem;
-        margin-bottom: 1rem;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
       }
       .results-header h4 {
-        font-size: 1rem;
+        font-size: 0.88rem;
         font-weight: 700;
-        color: var(--accent-d);
+        color: var(--text);
       }
-      .badge {
-        padding: 0.28rem 0.85rem;
-        border-radius: 20px;
-        font-size: 0.78rem;
-        font-weight: 700;
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.2rem 0.6rem;
+        border-radius: 4px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        font-family: var(--mono);
       }
-      .badge-primary {
-        background: #fde8ea;
-        color: var(--primary-d);
-      }
-      .badge-success {
-        background: #d1fae5;
-        color: #065f46;
-      }
-      .badge-info {
+      .tag-blue {
         background: #dbeafe;
         color: #1e40af;
       }
-      .badge-warning {
-        background: #fef3c7;
-        color: #78350f;
+      .tag-green {
+        background: #d1fae5;
+        color: #065f46;
       }
-      .badge-muted {
+      .tag-red {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+      .tag-gray {
         background: #f3f4f6;
-        color: var(--muted);
+        color: #4b5563;
+      }
+      .tag-amber {
+        background: #fef3c7;
+        color: #92400e;
       }
 
       .table-wrap {
         overflow-x: auto;
-        border-radius: var(--radius);
+        background: var(--card);
         border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
       }
       table {
         width: 100%;
         border-collapse: collapse;
-        font-size: 0.88rem;
+        font-size: 0.82rem;
       }
       thead th {
-        background: var(--accent-d);
-        color: #fff;
-        padding: 0.75rem 1rem;
+        background: var(--bg);
+        color: var(--text-secondary);
+        padding: 0.6rem 0.85rem;
         text-align: left;
         font-weight: 600;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         text-transform: uppercase;
-        letter-spacing: 0.4px;
+        letter-spacing: 0.5px;
         white-space: nowrap;
+        border-bottom: 1px solid var(--border);
       }
       tbody tr {
-        border-bottom: 1px solid var(--border);
-        transition: background 0.15s;
+        border-bottom: 1px solid var(--border-light);
+        transition: background var(--transition);
       }
       tbody tr:last-child {
         border-bottom: none;
       }
       tbody tr:hover {
-        background: #f0f7ff;
+        background: var(--accent-subtle);
       }
       tbody td {
-        padding: 0.75rem 1rem;
+        padding: 0.6rem 0.85rem;
         color: var(--text);
         vertical-align: middle;
       }
       .rank-cell {
-        font-weight: 800;
-        font-size: 1.05rem;
-        color: var(--primary);
-        width: 40px;
+        font-family: var(--mono);
+        font-weight: 700;
+        font-size: 0.82rem;
+        color: var(--text-secondary);
+        width: 36px;
         text-align: center;
       }
       .filiere-name {
         font-weight: 600;
-        color: var(--accent-d);
+        color: var(--text);
       }
+
       .marge-bar {
         display: flex;
         align-items: center;
         gap: 0.5rem;
         min-width: 120px;
       }
+      .marge-value {
+        font-family: var(--mono);
+        font-weight: 700;
+        font-size: 0.78rem;
+        min-width: 38px;
+      }
       .marge-track {
+        flex: 1;
+        height: 4px;
+        background: var(--border);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .marge-fill {
+        height: 100%;
+        border-radius: 2px;
+        transition: width 0.4s ease;
+      }
+
+      /* ── PREDICTION CARD ───────────────────────────────── */
+      .predict-result {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        padding: 1.5rem;
+      }
+      .predict-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text-secondary);
+        margin-bottom: 0.25rem;
+      }
+      .domaine-big {
+        font-size: 1.5rem;
+        font-weight: 800;
+        letter-spacing: -0.3px;
+        margin-bottom: 1rem;
+      }
+      .confidence-bar-wrap {
+        margin-bottom: 1rem;
+      }
+      .confidence-label {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.3rem;
+        font-weight: 600;
+        font-family: var(--mono);
+      }
+      .confidence-track {
+        height: 8px;
+        background: var(--border);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .confidence-fill {
+        height: 100%;
+        border-radius: 4px;
+        background: var(--accent);
+        transition: width 0.5s ease;
+      }
+
+      .top5-section-title {
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text-secondary);
+        margin: 1.25rem 0 0.75rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-light);
+      }
+      .top5-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .top5-item {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .top5-item .t5-rank {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--text-secondary);
+        min-width: 18px;
+      }
+      .top5-item .t5-label {
+        font-size: 0.8rem;
+        color: var(--text);
+        min-width: 180px;
+        font-weight: 500;
+      }
+      .top5-item .t5-track {
         flex: 1;
         height: 6px;
         background: var(--border);
         border-radius: 3px;
         overflow: hidden;
       }
-      .marge-fill {
-        height: 100%;
-        border-radius: 3px;
-        transition: width 0.4s;
-      }
-
-      /* ── PREDICT CARD ──────────────────────────────────── */
-      .predict-result {
-        background: var(--card);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        padding: 1.8rem;
-        margin-top: 1.5rem;
-      }
-      .domaine-big {
-        font-size: 1.6rem;
-        font-weight: 800;
-        color: var(--accent-d);
-        margin: 0.5rem 0;
-      }
-      .confidence-bar-wrap {
-        margin: 1rem 0;
-      }
-      .confidence-label {
-        font-size: 0.82rem;
-        color: var(--muted);
-        margin-bottom: 0.4rem;
-        font-weight: 600;
-      }
-      .confidence-track {
-        height: 12px;
-        background: var(--border);
-        border-radius: 6px;
-        overflow: hidden;
-      }
-      .confidence-fill {
-        height: 100%;
-        border-radius: 6px;
-        background: linear-gradient(90deg, var(--success), var(--accent));
-      }
-      .top5-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 0.6rem;
-        margin-top: 1rem;
-      }
-      .top5-item {
-        display: flex;
-        align-items: center;
-        gap: 0.7rem;
-      }
-      .top5-item .t5-label {
-        font-size: 0.85rem;
-        color: var(--text);
-        min-width: 200px;
-      }
-      .top5-item .t5-track {
-        flex: 1;
-        height: 8px;
-        background: var(--border);
-        border-radius: 4px;
-        overflow: hidden;
-      }
       .top5-item .t5-fill {
         height: 100%;
-        border-radius: 4px;
-        background: var(--primary);
-        opacity: 0.75;
+        border-radius: 3px;
+        transition: width 0.4s ease;
       }
       .top5-item .t5-pct {
-        font-size: 0.8rem;
+        font-family: var(--mono);
+        font-size: 0.75rem;
         font-weight: 700;
-        color: var(--muted);
-        min-width: 42px;
+        color: var(--text-secondary);
+        min-width: 48px;
         text-align: right;
       }
 
-      /* ── EMPTY / ERROR ───────────────────────────────────── */
+      /* ── STATS CARDS ───────────────────────────────────── */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+      }
+      .stat-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 1rem;
+        text-align: center;
+        box-shadow: var(--shadow-sm);
+      }
+      .stat-card .stat-val {
+        font-family: var(--mono);
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--text);
+        margin-bottom: 0.15rem;
+      }
+      .stat-card .stat-lbl {
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        color: var(--text-secondary);
+      }
+
+      .section-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+      }
+      .section-card h4 {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+      }
+      .selective-row {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--border-light);
+      }
+      .selective-row:last-child {
+        border-bottom: none;
+      }
+      .selective-rank {
+        font-family: var(--mono);
+        font-weight: 700;
+        font-size: 0.78rem;
+        color: var(--text-secondary);
+        min-width: 22px;
+      }
+      .selective-name {
+        flex: 1;
+        font-weight: 500;
+        font-size: 0.82rem;
+      }
+      .perf-row {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 0.45rem 0;
+      }
+      .perf-label {
+        min-width: 110px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+      }
+      .perf-track {
+        flex: 1;
+        height: 6px;
+        background: var(--border);
+        border-radius: 3px;
+        overflow: hidden;
+      }
+      .perf-fill {
+        height: 100%;
+        border-radius: 3px;
+        background: var(--accent);
+        transition: width 0.4s ease;
+      }
+      .perf-value {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        font-weight: 700;
+        min-width: 45px;
+        text-align: right;
+        color: var(--text);
+      }
+
+      /* ── EMPTY STATE ───────────────────────────────────── */
       .empty {
         text-align: center;
-        padding: 4rem 1rem;
-        color: var(--muted);
+        padding: 3rem 1rem;
+        color: var(--text-secondary);
       }
-      .empty .big-icon {
-        font-size: 3.5rem;
-        display: block;
-        margin-bottom: 1rem;
+      .empty p {
+        font-size: 0.85rem;
+        max-width: 300px;
+        margin: 0 auto;
+        line-height: 1.6;
       }
 
       /* ── FOOTER ────────────────────────────────────────── */
       footer {
         text-align: center;
-        padding: 1.5rem;
+        padding: 1.25rem 1rem;
         border-top: 1px solid var(--border);
-        color: var(--muted);
-        font-size: 0.82rem;
-        margin-top: 3rem;
+        color: var(--text-secondary);
+        font-size: 0.72rem;
+        margin-top: 2rem;
+      }
+      footer a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      /* ── DOMAIN TAG ────────────────────────────────────── */
+      .domain-tag {
+        display: inline-block;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      /* ── SCROLLBAR ─────────────────────────────────────── */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #c4c7cd;
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #9ca3af;
       }
     </style>
   </head>
   <body>
-    <!-- NAV -->
-    <nav>
-      <div class="nav-logo">
-        <div class="logo-icon">🎓</div>
-        <div>
-          <h1>EduStat TN</h1>
-          <span>Orientation Universitaire</span>
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-inner">
+        <div class="header-left">
+          <div class="header-logo">ES</div>
+          <div>
+            <div class="header-title">EduStat TN</div>
+            <div class="header-subtitle">Orientation Universitaire</div>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="status-pill">
+            <span class="status-dot" id="statusDot"></span>
+            <span id="modelBadge">Connexion...</span>
+          </div>
+          <span class="version-tag">v2.0</span>
         </div>
       </div>
-      <span class="nav-badge" id="modelBadge">⚡ Chargement…</span>
-    </nav>
+    </header>
 
-    <!-- HERO -->
-    <div class="hero">
-      <h2>Trouvez la filière qui vous correspond</h2>
-      <p>
-        Entrez votre section du bac et votre score pour obtenir des
-        recommandations personnalisées basées sur les données réelles
-        d'admission.
-      </p>
+    <!-- METRICS BAR -->
+    <div class="metrics-bar">
+      <div class="metrics-inner">
+        <div class="metric-item">
+          <span class="metric-label">Filieres</span>
+          <span class="metric-value" id="statFilieres">&mdash;</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-label">Universites</span>
+          <span class="metric-value" id="statUniversites">&mdash;</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-label">Sections</span>
+          <span class="metric-value" id="statSections">&mdash;</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-label">Score Moy. 2025</span>
+          <span class="metric-value" id="statScoreMoyen">&mdash;</span>
+        </div>
+      </div>
     </div>
 
-    <!-- STATS BAR -->
-    <div class="stats-bar" id="statsBar">
-      <div class="stat-chip">
-        <span class="num" id="statFilieres">—</span
-        ><span class="lbl">Filières</span>
-      </div>
-      <div class="stat-chip">
-        <span class="num" id="statUniversites">—</span
-        ><span class="lbl">Universités</span>
-      </div>
-      <div class="stat-chip">
-        <span class="num" id="statSections">—</span
-        ><span class="lbl">Sections Bac</span>
-      </div>
-      <div class="stat-chip">
-        <span class="num" id="statScoreMoyen">—</span
-        ><span class="lbl">Score Moyen 2025</span>
-      </div>
-    </div>
-
-    <!-- MAIN -->
-    <div class="container">
-      <!-- SEARCH CARD -->
-      <div class="search-card">
-        <h3>🔎 Rechercher des filières accessibles</h3>
-        <div class="form-grid">
-          <div class="form-group">
-            <label>Section du Bac</label>
-            <select id="sectionSelect">
-              <option value="">— Choisir —</option>
-            </select>
+    <!-- MAIN LAYOUT -->
+    <div class="main">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Parametres de recherche</h3>
           </div>
-          <div class="form-group">
-            <label>Votre Score (sur ~220)</label>
-            <input
-              type="number"
-              id="scoreInput"
-              placeholder="ex: 145.0"
-              min="60"
-              max="225"
-              step="0.01"
-            />
-          </div>
-          <div class="form-group">
-            <label>Nombre de résultats</label>
-            <select id="topNSelect">
-              <option value="5">5</option>
-              <option value="10" selected>10</option>
-              <option value="20">20</option>
-              <option value="50">Tous</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Année de référence</label>
-            <select id="yearSelect">
-              <option value="Score_2025" selected>2025 (Recommandé)</option>
-              <option value="Score_2024">2024</option>
-              <option value="Score_2023">2023</option>
-              <option value="Score_2022">2022</option>
-            </select>
+          <div class="panel-body">
+            <div class="field">
+              <label>Section du bac</label>
+              <select id="sectionSelect">
+                <option value="">Selectionner</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Score obtenu</label>
+              <input
+                type="number"
+                id="scoreInput"
+                placeholder="ex : 145.00"
+                min="60"
+                max="225"
+                step="0.01"
+              />
+            </div>
+            <div class="field">
+              <label>Nb. de resultats</label>
+              <select id="topNSelect">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+                <option value="50">Tous</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Annee de reference</label>
+              <select id="yearSelect">
+                <option value="Score_2025" selected>2025</option>
+                <option value="Score_2024">2024</option>
+                <option value="Score_2023">2023</option>
+                <option value="Score_2022">2022</option>
+              </select>
+            </div>
+            <div class="actions">
+              <button class="btn btn-primary" onclick="searchRecommendations()">
+                Rechercher
+              </button>
+              <button class="btn btn-secondary" onclick="predictDomain()">
+                Prediction ML
+              </button>
+              <button class="btn btn-ghost" onclick="clearResults()">
+                Reinitialiser
+              </button>
+            </div>
           </div>
         </div>
-        <div
-          style="
-            margin-top: 1.4rem;
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-          "
-        >
-          <button class="btn btn-primary" onclick="searchRecommendations()">
-            🔍 Chercher mes filières
+      </aside>
+
+      <!-- CONTENT -->
+      <div class="content">
+        <!-- TABS -->
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab('recommend')">
+            Recommandations
           </button>
-          <button class="btn btn-secondary" onclick="predictDomain()">
-            🤖 Prédire mon domaine (ML)
+          <button class="tab-btn" onclick="switchTab('predict')">
+            Prediction ML
           </button>
-          <button class="btn btn-outline" onclick="clearResults()">
-            ✕ Effacer
+          <button class="tab-btn" onclick="switchTab('stats')">
+            Statistiques
           </button>
         </div>
-      </div>
 
-      <!-- TABS -->
-      <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab('recommend')">
-          📋 Recommandations
-        </button>
-        <button class="tab-btn" onclick="switchTab('predict')">
-          🤖 Prédiction ML
-        </button>
-        <button class="tab-btn" onclick="switchTab('stats')">
-          📊 Statistiques
-        </button>
-      </div>
-
-      <!-- TAB : RECOMMANDATIONS -->
-      <div class="tab-panel active" id="tab-recommend">
-        <div class="loader" id="loaderRec">
-          <div class="spinner"></div>
-          <p style="color: var(--muted)">Recherche des filières en cours…</p>
-        </div>
-        <div id="alertRec"></div>
-        <div id="resultsRec">
-          <div class="empty">
-            <span class="big-icon">🎓</span>
-            <p>
-              Saisissez votre section et votre score, puis cliquez sur
-              <strong>Chercher</strong>.
-            </p>
+        <!-- TAB : RECOMMANDATIONS -->
+        <div class="tab-panel active" id="tab-recommend">
+          <div class="loader" id="loaderRec">
+            <div class="spinner"></div>
+            <p>Recherche en cours...</p>
+          </div>
+          <div id="alertRec"></div>
+          <div id="resultsRec">
+            <div class="empty">
+              <p>
+                Renseignez votre section et votre score, puis lancez la
+                recherche.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- TAB : PREDICTION ML -->
-      <div class="tab-panel" id="tab-predict">
-        <div class="loader" id="loaderPred">
-          <div class="spinner"></div>
-          <p style="color: var(--muted)">Prédiction ML en cours…</p>
-        </div>
-        <div id="alertPred"></div>
-        <div id="resultsPred">
-          <div class="empty">
-            <span class="big-icon">🤖</span>
-            <p>
-              Cliquez sur <strong>Prédire mon domaine</strong> pour utiliser le
-              modèle XGBoost.
-            </p>
+        <!-- TAB : PREDICTION ML -->
+        <div class="tab-panel" id="tab-predict">
+          <div class="loader" id="loaderPred">
+            <div class="spinner"></div>
+            <p>Prediction en cours...</p>
+          </div>
+          <div id="alertPred"></div>
+          <div id="resultsPred">
+            <div class="empty">
+              <p>Cliquez sur Prediction ML pour lancer l'analyse.</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- TAB : STATS -->
-      <div class="tab-panel" id="tab-stats">
-        <div class="loader" id="loaderStats">
-          <div class="spinner"></div>
-          <p style="color: var(--muted)">Chargement des statistiques…</p>
-        </div>
-        <div id="resultsStats">
-          <div class="empty">
-            <span class="big-icon">📊</span>
-            <p>Cliquez sur l'onglet pour charger les statistiques.</p>
+        <!-- TAB : STATS -->
+        <div class="tab-panel" id="tab-stats">
+          <div class="loader" id="loaderStats">
+            <div class="spinner"></div>
+            <p>Chargement des statistiques...</p>
+          </div>
+          <div id="resultsStats">
+            <div class="empty">
+              <p>Selectionnez l'onglet pour charger les statistiques.</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <footer>
-      EduStat TN &mdash; Pipeline ML d'Orientation Universitaire &mdash; Tunisie
-      2025<br />
-      Modèle : XGBoost &bull; Données : 2022–2025 &bull;
-      <a href="/docs" style="color: var(--accent)">API Docs (Swagger)</a>
+      EduStat TN &mdash; Orientation Universitaire &mdash; Tunisie 2025 &bull;
+      Donnees 2022-2025 &bull;
+      <a href="http://127.0.0.1:8001/docs">API Documentation</a>
     </footer>
 
     <script>
       // ── CONFIG ───────────────────────────────────────────────────
-      const API = "http://127.0.0.1:8001";
+      const API = "http://127.0.0.1:8003";
 
       const DOMAIN_COLORS = {
-        "Informatique & Tech": "#4361ee",
-        "Ingénierie & Génie": "#3a86ff",
-        "Sciences Fondamentales": "#7209b7",
-        "Médecine & Santé": "#e63946",
-        "Économie & Gestion": "#2a9d8f",
-        "Droit & Sciences Sociales": "#e9c46a",
-        "Lettres & Langues": "#f4a261",
-        "Arts & Architecture": "#e76f51",
-        "Sciences Humaines": "#90be6d",
-        "Agronomie & Environnement": "#43aa8b",
-        Autres: "#6c757d",
+        "Informatique & Tech": "#2563eb",
+        "Ingenierie & Genie": "#7c3aed",
+        "Sciences Fondamentales": "#db2777",
+        "Medecine & Sante": "#dc2626",
+        "Economie & Gestion": "#059669",
+        "Droit & Sciences Sociales": "#d97706",
+        "Lettres & Langues": "#ea580c",
+        "Arts & Architecture": "#e11d48",
+        "Sciences Humaines": "#65a30d",
+        "Agronomie & Environnement": "#0d9488",
       };
 
       let statsLoaded = false;
 
       // ── INIT ─────────────────────────────────────────────────────
       window.addEventListener("DOMContentLoaded", async () => {
-        await loadSections();
-        await loadTopStats();
+        await Promise.all([loadSections(), loadTopStats()]);
         await checkHealth();
       });
 
@@ -743,12 +996,11 @@
           const r = await fetch(`${API}/`);
           const d = await r.json();
           document.getElementById("modelBadge").textContent =
-            `⚡ ${d.model} — Accuracy: ${(d.accuracy * 100).toFixed(1)}%`;
+            `En ligne | ${d.model} F1 ${(d.f1_weighted * 100).toFixed(1)}%`;
+          document.getElementById("statusDot").classList.remove("offline");
         } catch {
-          document.getElementById("modelBadge").textContent =
-            "⚠️ API hors ligne";
-          document.getElementById("modelBadge").style.background =
-            "rgba(230,57,70,.4)";
+          document.getElementById("modelBadge").textContent = "Hors ligne";
+          document.getElementById("statusDot").classList.add("offline");
         }
       }
 
@@ -808,7 +1060,7 @@
           showAlert(
             "alertRec",
             "error",
-            "⚠️ Veuillez choisir une section et saisir un score valide.",
+            "Veuillez selectionner une section et saisir un score valide.",
           );
           return;
         }
@@ -836,7 +1088,7 @@
           const d = await r.json();
           renderRecommendations(d);
         } catch (e) {
-          showAlert("alertRec", "error", `❌ ${e.message}`);
+          showAlert("alertRec", "error", e.message);
         } finally {
           showLoader("loaderRec", false);
         }
@@ -846,17 +1098,17 @@
         const el = document.getElementById("resultsRec");
 
         if (d.status === "score_bas") {
-          showAlert("alertRec", "warning", `⚠️ ${d.message}`);
+          showAlert("alertRec", "warning", d.message);
           if (!d.suggestions?.length) return;
           el.innerHTML = `
         <div class="results-header">
-          <h4>💡 Filières les plus proches de votre score</h4>
+          <h4>Filieres les plus proches</h4>
         </div>
         <div class="table-wrap">
           <table>
             <thead><tr>
-              <th>#</th><th>Filière</th><th>Université</th><th>Domaine</th>
-              <th>Seuil 2025</th><th>Écart</th>
+              <th>#</th><th>Filiere</th><th>Universite</th><th>Domaine</th>
+              <th>Seuil 2025</th><th>Ecart</th>
             </tr></thead>
             <tbody>${d.suggestions
               .map(
@@ -864,10 +1116,10 @@
               <tr>
                 <td class="rank-cell">${i + 1}</td>
                 <td class="filiere-name">${r.Filiere}</td>
-                <td>${shortUniv(r.Universite)}</td>
-                <td><span class="badge badge-muted">${r.Domaine}</span></td>
-                <td>${r.Score_2025?.toFixed(2) ?? "—"}</td>
-                <td style="color:var(--primary);font-weight:700">+${r.ecart?.toFixed(2)}</td>
+                <td style="font-size:.78rem;color:var(--text-secondary)">${shortUniv(r.Universite)}</td>
+                <td><span class="domain-tag" style="background:#f3f4f6;color:#4b5563">${r.Domaine}</span></td>
+                <td style="font-family:var(--mono);font-weight:600">${r.Score_2025?.toFixed(2) ?? "&mdash;"}</td>
+                <td style="color:var(--danger);font-family:var(--mono);font-weight:700">+${r.ecart?.toFixed(2)}</td>
               </tr>`,
               )
               .join("")}
@@ -879,8 +1131,7 @@
 
         const recs = d.recommendations;
         if (!recs?.length) {
-          el.innerHTML =
-            '<div class="empty"><span class="big-icon">😕</span><p>Aucun résultat trouvé.</p></div>';
+          el.innerHTML = '<div class="empty"><p>Aucun resultat.</p></div>';
           return;
         }
 
@@ -888,44 +1139,112 @@
 
         el.innerHTML = `
       <div class="results-header">
-        <h4>📋 ${recs.length} filière(s) recommandée(s)</h4>
-        <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
-          <span class="badge badge-info">Section ${d.section} — ${d.section_label}</span>
-          <span class="badge badge-primary">Score : ${d.score_etudiant}</span>
-          <span class="badge badge-success">${d.total_eligible} filières accessibles</span>
+        <h4>${recs.length} filiere(s) recommandee(s)</h4>
+        <div style="display:flex;gap:.4rem;flex-wrap:wrap;">
+          <span class="tag tag-blue">${d.section} &mdash; ${d.section_label}</span>
+          <span class="tag tag-gray">Score : ${d.score_etudiant}</span>
+          <span class="tag tag-green">${d.total_eligible} accessibles</span>
         </div>
       </div>
       <div class="table-wrap">
         <table>
           <thead><tr>
-            <th>#</th><th>Filière</th><th>Université</th><th>Domaine</th>
-            <th>Seuil Admission</th><th>Moy. Hist.</th><th>Marge</th><th>Compat.</th>
+            <th>#</th><th>Filiere</th><th>Universite</th><th>Domaine</th>
+            <th>Seuil</th><th>Moy. Hist.</th><th>Marge</th><th>Compat.</th>
           </tr></thead>
           <tbody>${recs
             .map((r, i) => {
-              const color = DOMAIN_COLORS[r.Domaine] ?? "#6c757d";
+              const color = DOMAIN_COLORS[r.Domaine] ?? "#6b7280";
               const pct = maxMarge > 0 ? (r.marge / maxMarge) * 100 : 0;
               return `<tr>
               <td class="rank-cell">${i + 1}</td>
               <td class="filiere-name">${r.Filiere}</td>
-              <td style="font-size:.82rem;color:var(--muted)">${shortUniv(r.Universite)}</td>
-              <td><span class="badge" style="background:${color}18;color:${color}">${r.Domaine}</span></td>
-              <td style="font-weight:700">${r.seuil_admission?.toFixed(2)}</td>
-              <td>${r.moyenne_historique?.toFixed(2)}</td>
+              <td style="font-size:.78rem;color:var(--text-secondary)">${shortUniv(r.Universite)}</td>
+              <td><span class="domain-tag" style="background:${color}12;color:${color}">${r.Domaine}</span></td>
+              <td style="font-family:var(--mono);font-weight:700">${r.seuil_admission?.toFixed(2)}</td>
+              <td style="font-family:var(--mono)">${r.moyenne_historique?.toFixed(2)}</td>
               <td>
                 <div class="marge-bar">
-                  <span style="font-weight:700;min-width:38px">${r.marge?.toFixed(2)}</span>
+                  <span class="marge-value">${r.marge?.toFixed(2)}</span>
                   <div class="marge-track">
                     <div class="marge-fill" style="width:${pct}%;background:${color}"></div>
                   </div>
                 </div>
               </td>
-              <td><span class="badge ${r.compatibilite_pct > 5 ? "badge-success" : r.compatibilite_pct > 1 ? "badge-info" : "badge-warning"}">${r.compatibilite_pct?.toFixed(1)}%</span></td>
+              <td><span class="tag ${r.compatibilite_pct > 5 ? "tag-green" : r.compatibilite_pct > 1 ? "tag-blue" : "tag-amber"}">${r.compatibilite_pct?.toFixed(1)}%</span></td>
             </tr>`;
             })
             .join("")}
           </tbody>
         </table>
+      </div>
+      ${buildSearchStats(recs, d)}`;
+      }
+
+      function buildSearchStats(recs, d) {
+        // Domain distribution
+        const domainCount = {};
+        recs.forEach((r) => {
+          domainCount[r.Domaine] = (domainCount[r.Domaine] || 0) + 1;
+        });
+        const domainEntries = Object.entries(domainCount).sort(
+          (a, b) => b[1] - a[1],
+        );
+        const maxCount = domainEntries[0]?.[1] || 1;
+
+        // Score stats
+        const seuils = recs.map((r) => r.seuil_admission).filter(Boolean);
+        const marges = recs.map((r) => r.marge).filter(Boolean);
+        const minSeuil = Math.min(...seuils);
+        const maxSeuil = Math.max(...seuils);
+        const avgMarge = marges.length
+          ? marges.reduce((a, b) => a + b, 0) / marges.length
+          : 0;
+
+        // Universities
+        const univSet = new Set(recs.map((r) => r.Universite).filter(Boolean));
+
+        return `
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.25rem;">
+        <div class="section-card" style="margin-bottom:0">
+          <h4>Repartition par domaine</h4>
+          ${domainEntries
+            .map(([dom, cnt]) => {
+              const c = DOMAIN_COLORS[dom] ?? "#6b7280";
+              return `<div style="display:flex;align-items:center;gap:.5rem;padding:.3rem 0;">
+              <span style="font-size:.75rem;min-width:140px;color:var(--text);font-weight:500">${dom}</span>
+              <div style="flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden;">
+                <div style="height:100%;width:${((cnt / maxCount) * 100).toFixed(0)}%;background:${c};border-radius:3px"></div>
+              </div>
+              <span style="font-family:var(--mono);font-size:.72rem;font-weight:700;min-width:20px;text-align:right;color:var(--text-secondary)">${cnt}</span>
+            </div>`;
+            })
+            .join("")}
+        </div>
+        <div class="section-card" style="margin-bottom:0">
+          <h4>Synthese de la recherche</h4>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;">
+            <div style="text-align:center;padding:.6rem;background:var(--bg);border-radius:var(--radius);">
+              <div style="font-family:var(--mono);font-size:1.1rem;font-weight:800">${d.total_eligible}</div>
+              <div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.3px;color:var(--text-secondary);font-weight:600">Total eligible</div>
+            </div>
+            <div style="text-align:center;padding:.6rem;background:var(--bg);border-radius:var(--radius);">
+              <div style="font-family:var(--mono);font-size:1.1rem;font-weight:800">${univSet.size}</div>
+              <div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.3px;color:var(--text-secondary);font-weight:600">Universites</div>
+            </div>
+            <div style="text-align:center;padding:.6rem;background:var(--bg);border-radius:var(--radius);">
+              <div style="font-family:var(--mono);font-size:1.1rem;font-weight:800">${minSeuil.toFixed(1)}&ndash;${maxSeuil.toFixed(1)}</div>
+              <div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.3px;color:var(--text-secondary);font-weight:600">Plage seuils</div>
+            </div>
+            <div style="text-align:center;padding:.6rem;background:var(--bg);border-radius:var(--radius);">
+              <div style="font-family:var(--mono);font-size:1.1rem;font-weight:800">${avgMarge.toFixed(2)}</div>
+              <div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.3px;color:var(--text-secondary);font-weight:600">Marge moyenne</div>
+            </div>
+          </div>
+          <div style="margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--border-light);font-size:.72rem;color:var(--text-secondary)">
+            ${domainEntries.length} domaine(s) &bull; Section ${d.section} &bull; Score ${d.score_etudiant}
+          </div>
+        </div>
       </div>`;
       }
 
@@ -939,7 +1258,7 @@
           showAlert(
             "alertPred",
             "error",
-            "⚠️ Veuillez choisir une section et saisir un score valide.",
+            "Veuillez selectionner une section et saisir un score valide.",
           );
           return;
         }
@@ -962,7 +1281,7 @@
           const d = await r.json();
           renderPrediction(d);
         } catch (e) {
-          showAlert("alertPred", "error", `❌ ${e.message}`);
+          showAlert("alertPred", "error", e.message);
         } finally {
           showLoader("loaderPred", false);
         }
@@ -970,38 +1289,55 @@
 
       function renderPrediction(d) {
         const el = document.getElementById("resultsPred");
-        const color = DOMAIN_COLORS[d.domaine_predit] ?? "#457b9d";
+        const color = DOMAIN_COLORS[d.domaine_predit] ?? "#2563eb";
         const maxP = d.top_5_domaines[0].probabilite_pct;
+        const nbFil = d.nb_filieres || d.top_5_domaines.length;
 
         el.innerHTML = `
       <div class="predict-result">
-        <p style="color:var(--muted);font-size:.88rem;font-weight:600;">DOMAINE PRÉDIT PAR LE MODÈLE XGBOOST</p>
+        <div class="predict-label">Domaine le plus probable</div>
         <div class="domaine-big" style="color:${color}">${d.domaine_predit}</div>
         <div class="confidence-bar-wrap">
-          <div class="confidence-label">Confiance : ${d.confiance_pct}%</div>
+          <div class="confidence-label">Probabilite : ${d.confiance_pct}%</div>
           <div class="confidence-track">
             <div class="confidence-fill" style="width:${d.confiance_pct}%"></div>
           </div>
         </div>
-        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem;">
-          <span class="badge badge-info">Section ${d.section}</span>
-          <span class="badge badge-primary">Score 2025 : ${d.score_2025}</span>
+        <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem;">
+          <span class="tag tag-blue">Section ${d.section}</span>
+          <span class="tag tag-gray">Score 2025 : ${d.score_2025}</span>
+          <span class="tag tag-green">${nbFil} filieres accessibles</span>
         </div>
-        <p style="font-size:.88rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.6rem;">Top 5 Domaines Probables</p>
+        <div class="top5-section-title">Repartition des domaines accessibles</div>
         <div class="top5-grid">
           ${d.top_5_domaines
             .map((t, i) => {
-              const c = DOMAIN_COLORS[t.domaine] ?? "#6c757d";
+              const c = DOMAIN_COLORS[t.domaine] ?? "#6b7280";
               return `<div class="top5-item">
-              <span class="t5-label">${i === 0 ? "⭐ " : ""}${t.domaine}</span>
+              <span class="t5-rank">${i + 1}</span>
+              <span class="t5-label">${t.domaine}</span>
               <div class="t5-track"><div class="t5-fill" style="width:${((t.probabilite_pct / maxP) * 100).toFixed(1)}%;background:${c}"></div></div>
               <span class="t5-pct">${t.probabilite_pct}%</span>
             </div>`;
             })
             .join("")}
         </div>
-        <div class="alert alert-info" style="margin-top:1.2rem;font-size:.82rem;">
-          ℹ️ Cette prédiction est basée sur des données historiques 2022–2025. Elle donne une orientation générale ; confirmez avec un conseiller d'orientation.
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;margin-top:1.25rem;">
+          <div style="text-align:center;padding:.6rem;background:var(--bg);border-radius:var(--radius);border:1px solid var(--border-light);">
+            <div style="font-family:var(--mono);font-size:1rem;font-weight:800;color:${color}">${d.confiance_pct}%</div>
+            <div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.3px;color:var(--text-secondary);font-weight:600">Probabilite</div>
+          </div>
+          <div style="text-align:center;padding:.6rem;background:var(--bg);border-radius:var(--radius);border:1px solid var(--border-light);">
+            <div style="font-family:var(--mono);font-size:1rem;font-weight:800">${nbFil}</div>
+            <div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.3px;color:var(--text-secondary);font-weight:600">Filieres analysees</div>
+          </div>
+          <div style="text-align:center;padding:.6rem;background:var(--bg);border-radius:var(--radius);border:1px solid var(--border-light);">
+            <div style="font-family:var(--mono);font-size:1rem;font-weight:800">${d.top_5_domaines.length}</div>
+            <div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.3px;color:var(--text-secondary);font-weight:600">Domaines couverts</div>
+          </div>
+        </div>
+        <div class="alert alert-info" style="margin-top:.75rem;font-size:.78rem;">
+          Analyse basee sur ${nbFil} filieres accessibles (donnees 2022-2025). A confirmer avec un conseiller d'orientation.
         </div>
       </div>`;
       }
@@ -1014,9 +1350,9 @@
           const r = await fetch(`${API}/api/stats`);
           const d = await r.json();
           renderStats(d);
-        } catch (e) {
+        } catch {
           document.getElementById("resultsStats").innerHTML =
-            '<div class="alert alert-error">❌ Impossible de charger les statistiques. Vérifiez que le serveur est démarré.</div>';
+            '<div class="alert alert-error">Impossible de charger les statistiques. Verifiez que le serveur est demarre.</div>';
         } finally {
           showLoader("loaderStats", false);
         }
@@ -1025,66 +1361,75 @@
       function renderStats(d) {
         const el = document.getElementById("resultsStats");
         const topFil = d.top_filieres_selectives || [];
+        const domDist = d.domaine_distribution || {};
+        const secDist = d.section_distribution || {};
+        const domEntries = Object.entries(domDist).sort((a, b) => b[1] - a[1]);
+        const secEntries = Object.entries(secDist).sort((a, b) => b[1] - a[1]);
+        const maxDom = domEntries[0]?.[1] || 1;
+        const maxSec = secEntries[0]?.[1] || 1;
 
         el.innerHTML = `
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:1.5rem;">
+      <div class="stats-grid">
         ${[
-          ["📚", "Filières", d.total_filieres, "badge-info"],
-          ["🏛️", "Universités", d.total_universites, "badge-success"],
-          ["📋", "Sections Bac", d.total_sections, "badge-primary"],
-          [
-            "📈",
-            "Score Moyen 2025",
-            d.score_moyen_2025?.toFixed(2),
-            "badge-warning",
-          ],
-          [
-            "⬆️",
-            "Score Max 2025",
-            d.score_max_2025?.toFixed(2),
-            "badge-success",
-          ],
-          ["⬇️", "Score Min 2025", d.score_min_2025?.toFixed(2), "badge-muted"],
+          ["Enregistrements", d.total_records],
+          ["Filieres", d.total_filieres],
+          ["Universites", d.total_universites],
+          ["Sections Bac", d.total_sections],
+          ["Score Moy. 2025", d.score_moyen_2025?.toFixed(2)],
+          ["Score Max 2025", d.score_max_2025?.toFixed(2)],
         ]
           .map(
-            ([icon, label, val, badge]) => `
-          <div style="background:var(--card);border-radius:10px;padding:1.2rem;box-shadow:var(--shadow);text-align:center;">
-            <div style="font-size:1.8rem">${icon}</div>
-            <div style="font-size:1.5rem;font-weight:800;margin:.3rem 0">${val}</div>
-            <span class="badge ${badge}">${label}</span>
+            ([label, val]) => `
+          <div class="stat-card">
+            <div class="stat-val">${val}</div>
+            <div class="stat-lbl">${label}</div>
           </div>`,
           )
           .join("")}
       </div>
-      <div style="background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.5rem;margin-bottom:1.5rem;">
-        <h4 style="font-weight:700;margin-bottom:1rem;color:var(--accent-d)">🏆 Top 5 Filières les plus Sélectives (Score Max 2025)</h4>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div class="section-card">
+          <h4>Repartition par domaine</h4>
+          ${domEntries
+            .map(([dom, cnt]) => {
+              const c = DOMAIN_COLORS[dom] ?? "#6b7280";
+              return `<div style="display:flex;align-items:center;gap:.5rem;padding:.25rem 0;">
+              <span style="font-size:.72rem;min-width:140px;color:var(--text);font-weight:500">${dom}</span>
+              <div style="flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden;">
+                <div style="height:100%;width:${((cnt / maxDom) * 100).toFixed(0)}%;background:${c};border-radius:3px"></div>
+              </div>
+              <span style="font-family:var(--mono);font-size:.7rem;font-weight:700;min-width:28px;text-align:right;color:var(--text-secondary)">${cnt}</span>
+            </div>`;
+            })
+            .join("")}
+        </div>
+
+        <div class="section-card">
+          <h4>Repartition par section</h4>
+          ${secEntries
+            .map(([sec, cnt]) => {
+              return `<div style="display:flex;align-items:center;gap:.5rem;padding:.25rem 0;">
+              <span style="font-size:.72rem;min-width:100px;color:var(--text);font-weight:500">${sec}</span>
+              <div style="flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden;">
+                <div style="height:100%;width:${((cnt / maxSec) * 100).toFixed(0)}%;background:var(--accent);border-radius:3px"></div>
+              </div>
+              <span style="font-family:var(--mono);font-size:.7rem;font-weight:700;min-width:28px;text-align:right;color:var(--text-secondary)">${cnt}</span>
+            </div>`;
+            })
+            .join("")}
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h4>Top 5 Filieres les plus selectives</h4>
         ${topFil
           .map(
             (f, i) => `
-          <div style="display:flex;align-items:center;gap:.8rem;padding:.6rem 0;border-bottom:1px solid var(--border);">
-            <span style="font-size:1.3rem;min-width:30px">${["🥇", "🥈", "🥉", "4️⃣", "5️⃣"][i]}</span>
-            <span style="flex:1;font-weight:600">${f.Filiere}</span>
-            <span class="badge badge-primary">${f.score_max?.toFixed(2)}</span>
-          </div>`,
-          )
-          .join("")}
-      </div>
-      <div style="background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.5rem;">
-        <h4 style="font-weight:700;margin-bottom:.8rem;color:var(--accent-d)">🤖 Performances du Modèle XGBoost</h4>
-        ${[
-          ["Accuracy", "accuracy", "badge-success"],
-          ["F1 Weighted", "f1_weighted", "badge-info"],
-          ["Précision", "precision_weighted", "badge-primary"],
-          ["Rappel", "recall_weighted", "badge-warning"],
-        ]
-          .map(
-            ([label, key, badge]) => `
-          <div style="display:flex;align-items:center;gap:.8rem;padding:.5rem 0;">
-            <span style="min-width:130px;font-size:.88rem;font-weight:600">${label}</span>
-            <div style="flex:1;height:10px;background:var(--border);border-radius:5px;overflow:hidden;">
-              <div style="height:100%;width:${(d.model[key] * 100).toFixed(1)}%;background:var(--accent);border-radius:5px"></div>
-            </div>
-            <span class="badge ${badge}">${(d.model[key] * 100).toFixed(1)}%</span>
+          <div class="selective-row">
+            <span class="selective-rank">${i + 1}</span>
+            <span class="selective-name">${f.Filiere}</span>
+            <span class="tag tag-red">${f.score_max?.toFixed(2)}</span>
           </div>`,
           )
           .join("")}
@@ -1093,10 +1438,10 @@
 
       // ── HELPERS ──────────────────────────────────────────────────
       function shortUniv(u) {
-        if (!u) return "—";
+        if (!u) return "&mdash;";
         return u
-          .replace("Université de ", "Univ. ")
-          .replace("Université d'", "Univ. ");
+          .replace("Universite de ", "Univ. ")
+          .replace("Universite d'", "Univ. ");
       }
       function showLoader(id, show) {
         document.getElementById(id).style.display = show ? "block" : "none";
@@ -1107,11 +1452,15 @@
       function clearResults() {
         ["alertRec", "alertPred", "alertStats"].forEach(clearEl);
         document.getElementById("resultsRec").innerHTML =
-          '<div class="empty"><span class="big-icon">🎓</span><p>Saisissez votre section et votre score, puis cliquez sur <strong>Chercher</strong>.</p></div>';
+          '<div class="empty"><p>Renseignez votre section et votre score, puis lancez la recherche.</p></div>';
         document.getElementById("resultsPred").innerHTML =
-          '<div class="empty"><span class="big-icon">🤖</span><p>Cliquez sur <strong>Prédire mon domaine</strong>.</p></div>';
+          '<div class="empty"><p>Cliquez sur Prediction ML pour lancer l\'analyse.</p></div>';
+        document.getElementById("resultsStats").innerHTML =
+          '<div class="empty"><p>Selectionnez l\'onglet pour charger les statistiques.</p></div>';
         document.getElementById("sectionSelect").value = "";
         document.getElementById("scoreInput").value = "";
+        statsLoaded = false;
+        switchTab("recommend");
       }
       function showAlert(containerId, type, msg) {
         document.getElementById(containerId).innerHTML =

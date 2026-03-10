@@ -70,26 +70,46 @@ YEAR_COLS = ["Score_2022", "Score_2023", "Score_2024", "Score_2025"]
 # ============================================================
 DOMAIN_KEYWORDS = {
     "Informatique & Tech"      : ["informatique", "technologies", "télécom", "numérique",
-                                   "réseaux", "systèmes embarqués", "internet des objets"],
+                                   "réseaux", "systèmes embarqués", "internet des objets",
+                                   "tic"],
     "Ingénierie & Génie"       : ["génie", "mécanique", "électronique", "électrotechnique",
-                                   "civil", "industriel", "énergétique", "matériaux"],
+                                   "civil", "industriel", "énergétique", "matériaux",
+                                   "cycle préparatoire", "instrumentation et mesure"],
     "Sciences Fondamentales"   : ["physique", "chimie", "biologie", "mathématiques",
-                                   "sciences de la vie", "biotechnologie", "biochimie"],
+                                   "sciences de la vie", "biotechnologie", "biochimie",
+                                   "sciences de la terre", "géomatique"],
     "Médecine & Santé"         : ["médecine", "pharmacie", "dentaire", "chirurgie",
-                                   "paramédical", "kinésithérapie", "santé"],
+                                   "paramédical", "kinésithérapie", "santé",
+                                   "infirmière", "infirmier", "infirmières",
+                                   "physiothérapie", "orthophonie", "ergothérapie",
+                                   "audioprothèse", "optique", "lunetterie",
+                                   "imagerie médicale", "radiothérapie",
+                                   "bloc opératoire", "obstétrique", "sage-femme",
+                                   "nutrition", "appareillage orthopédique"],
     "Économie & Gestion"       : ["gestion", "commerce", "finance", "comptabilité",
                                    "affaires", "marketing", "économie", "management",
-                                   "logistique", "assurance"],
+                                   "logistique", "assurance", "sciences économiques",
+                                   "hôtellerie"],
     "Droit & Sciences Sociales": ["droit", "juridique", "sciences sociales",
-                                   "sociologie", "psychologie", "criminologie"],
+                                   "sociologie", "psychologie", "criminologie",
+                                   "intervention sociale", "service social",
+                                   "sciences du travail", "travail social"],
     "Lettres & Langues"        : ["arabe", "anglais", "français", "allemand", "espagnol",
-                                   "lettres", "traduction", "langues"],
+                                   "lettres", "traduction", "langues",
+                                   "chinois", "italien", "russe",
+                                   "langue des signes", "communication", "journalisme"],
     "Arts & Architecture"      : ["architecture", "design", "arts", "théâtre", "musique",
-                                   "audiovisuel", "patrimoine"],
+                                   "audiovisuel", "patrimoine", "urbanisme", "aménagement"],
     "Sciences Humaines"        : ["histoire", "géographie", "philosophie", "civilisation",
-                                   "animation", "tourisme", "sport", "staps"],
+                                   "animation", "tourisme", "sport", "staps",
+                                   "football", "éducation", "enseignement",
+                                   "archéologie", "anthropologie", "géopolitique",
+                                   "relations internationales", "sciences islamiques",
+                                   "sciences religieuses"],
     "Agronomie & Environnement": ["agronomie", "agriculture", "agroalimentaire",
-                                   "environnement", "hydraulique", "vétérinaire"],
+                                   "environnement", "hydraulique", "vétérinaire",
+                                   "alimentaire", "sciences de la mer",
+                                   "sciences agronomiques"],
 }
 
 
@@ -294,7 +314,6 @@ def prepare_features(df: pd.DataFrame):
         "Score_2022", "Score_2023", "Score_2024", "Score_2025",
         "Score_Mean", "Score_Trend", "Score_Stability",
         "Score_Max", "Score_Min",
-        "Universite_Enc", "Etablissement_Enc",
     ]
 
     # ── Filtrage des classes trop petites ─────────────────────
@@ -497,7 +516,7 @@ def select_and_save_best_model(
               f"Precision={res['precision_weighted']:.4f} | "
               f"Recall={res['recall_weighted']:.4f}")
 
-    print(f"\n  ✅ Meilleur modèle : {best_name.upper()} "
+    print(f"\n  Meilleur modèle : {best_name.upper()} "
           f"(F1={best_result['f1_weighted']:.4f})")
 
     # ── Rapport de classification détaillé ───────────────────
@@ -587,7 +606,7 @@ def recommend_filiere(
         # Essai sans filtre de score → afficher les plus proches
         nearby = df_original[df_original["Section_Bac"] == section_bac].copy()
         nearby["Écart_Score"] = nearby[year_ref] - score_etudiant
-        print(f"  ⚠ Score trop bas pour accéder à des filières en section {section_bac}.")
+        print(f"  Score trop bas pour accéder à des filières en section {section_bac}.")
         print(f"  Filières les plus proches (score manquant) :")
         print(nearby.nsmallest(5, "Écart_Score")[
             ["Filiere", "Universite", "Etablissement", year_ref, "Écart_Score"]
@@ -701,4 +720,4 @@ if __name__ == "__main__":
     print(f"  Rappel           : {best_result['recall_weighted']:.4f}")
     print(f"\n  Artefacts dans   : {OUTPUT_DIR}")
     print(f"  MLflow URI       : {MLFLOW_TRACKING_URI}")
-    print(f"\n  ✅ Pipeline terminé avec succès !\n")
+    print(f"\n  Pipeline terminé avec succès !\n")

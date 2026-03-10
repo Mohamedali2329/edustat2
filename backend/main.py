@@ -30,7 +30,7 @@ CSV_PATH   = DATA_DIR / "tunisie_orientation_complete.csv"
 META_PATH  = DATA_DIR / "model_metadata.json"
 
 # ── Chargement des artefacts au démarrage ─────────────────────
-print("⏳ Chargement du modèle et des données...")
+print("Chargement du modèle et des données...")
 
 bundle   = joblib.load(MODEL_PATH)
 encoders = joblib.load(ENC_PATH)
@@ -53,16 +53,16 @@ df_raw["Score_Max"]       = df_raw[YEAR_COLS].max(axis=1)
 df_raw["Score_Min"]       = df_raw[YEAR_COLS].min(axis=1)
 
 DOMAIN_KEYWORDS = {
-    "Informatique & Tech"      : ["informatique","technologies","télécom","numérique","réseaux"],
-    "Ingénierie & Génie"       : ["génie","mécanique","électronique","électrotechnique","civil","industriel","énergétique"],
-    "Sciences Fondamentales"   : ["physique","chimie","biologie","mathématiques","sciences de la vie","biotechnologie"],
-    "Médecine & Santé"         : ["médecine","pharmacie","dentaire","chirurgie","paramédical","kinésithérapie","santé"],
-    "Économie & Gestion"       : ["gestion","commerce","finance","comptabilité","affaires","marketing","économie","management","logistique"],
-    "Droit & Sciences Sociales": ["droit","juridique","sciences sociales","sociologie","psychologie"],
-    "Lettres & Langues"        : ["arabe","anglais","français","allemand","espagnol","lettres","traduction","langues"],
-    "Arts & Architecture"      : ["architecture","design","arts","théâtre","musique","audiovisuel","patrimoine"],
-    "Sciences Humaines"        : ["histoire","géographie","philosophie","civilisation","animation","tourisme","sport","staps"],
-    "Agronomie & Environnement": ["agronomie","agriculture","agroalimentaire","environnement","hydraulique","vétérinaire"],
+    "Informatique & Tech"      : ["informatique","technologies","télécom","numérique","réseaux","systèmes embarqués","internet des objets","tic"],
+    "Ingénierie & Génie"       : ["génie","mécanique","électronique","électrotechnique","civil","industriel","énergétique","matériaux","cycle préparatoire","instrumentation et mesure"],
+    "Sciences Fondamentales"   : ["physique","chimie","biologie","mathématiques","sciences de la vie","biotechnologie","biochimie","sciences de la terre","géomatique"],
+    "Médecine & Santé"         : ["médecine","pharmacie","dentaire","chirurgie","paramédical","kinésithérapie","santé","infirmière","infirmier","infirmières","physiothérapie","orthophonie","ergothérapie","audioprothèse","optique","lunetterie","imagerie médicale","radiothérapie","bloc opératoire","obstétrique","sage-femme","nutrition","appareillage orthopédique"],
+    "Économie & Gestion"       : ["gestion","commerce","finance","comptabilité","affaires","marketing","économie","management","logistique","assurance","sciences économiques","hôtellerie"],
+    "Droit & Sciences Sociales": ["droit","juridique","sciences sociales","sociologie","psychologie","criminologie","intervention sociale","service social","sciences du travail","travail social"],
+    "Lettres & Langues"        : ["arabe","anglais","français","allemand","espagnol","lettres","traduction","langues","chinois","italien","russe","langue des signes","communication","journalisme"],
+    "Arts & Architecture"      : ["architecture","design","arts","théâtre","musique","audiovisuel","patrimoine","urbanisme","aménagement"],
+    "Sciences Humaines"        : ["histoire","géographie","philosophie","civilisation","animation","tourisme","sport","staps","football","éducation","enseignement","archéologie","anthropologie","géopolitique","relations internationales","sciences islamiques","sciences religieuses"],
+    "Agronomie & Environnement": ["agronomie","agriculture","agroalimentaire","environnement","hydraulique","vétérinaire","alimentaire","sciences de la mer","sciences agronomiques"],
 }
 
 def assign_domain(filiere: str) -> str:
@@ -84,7 +84,7 @@ SECTION_LABELS = {
     "SP": "Sport",
 }
 
-print("✅ Artefacts chargés.")
+print("Artefacts chargés.")
 
 # ── Application FastAPI ───────────────────────────────────────
 app = FastAPI(
@@ -147,6 +147,8 @@ def get_domaines():
 
 @app.get("/api/stats", tags=["Statistiques"])
 def get_stats():
+    domaine_dist = df_raw["Domaine"].value_counts().to_dict()
+    section_dist = df_raw["Section_Bac"].value_counts().to_dict()
     stats = {
         "total_records"   : int(len(df_raw)),
         "total_filieres"  : int(df_raw["Filiere"].nunique()),
@@ -155,6 +157,8 @@ def get_stats():
         "score_moyen_2025": round(float(df_raw["Score_2025"].mean()), 2),
         "score_max_2025"  : round(float(df_raw["Score_2025"].max()), 2),
         "score_min_2025"  : round(float(df_raw["Score_2025"].min()), 2),
+        "domaine_distribution": domaine_dist,
+        "section_distribution": section_dist,
         "top_filieres_selectives": (
             df_raw.groupby("Filiere")["Score_2025"]
             .max().nlargest(5)
@@ -239,45 +243,43 @@ def recommend(req: RecommendRequest):
 @app.post("/api/predict", tags=["Prédiction ML"])
 def predict_domain(req: PredictRequest):
     section = req.section_bac.upper()
+    score   = req.score_2025
 
-    # Encoder la section
-    try:
-        section_enc = int(encoders["section"].transform([section])[0])
-    except Exception:
-        raise HTTPException(status_code=400, detail=f"Section '{section}' inconnue du modèle.")
+    valid_sections = df_raw["Section_Bac"].unique().tolist()
+    if section not in valid_sections:
+        raise HTTPException(status_code=400, detail=f"Section '{section}' inconnue.")
 
-    s25 = req.score_2025
-    s22 = req.score_2022 if req.score_2022 else s25
-    s23 = req.score_2023 if req.score_2023 else s25
-    s24 = req.score_2024 if req.score_2024 else s25
+    # Filières accessibles pour cette section et ce score
+    eligible = df_raw[
+        (df_raw["Section_Bac"] == section) &
+        (df_raw["Score_2025"] <= score)
+    ]
 
-    scores = [s22, s23, s24, s25]
-    mean_s = round(float(np.mean(scores)), 4)
-    trend  = round(float(s25 - s22), 4)
-    stab   = round(float(np.std(scores)), 4)
-    s_max  = round(float(max(scores)), 4)
-    s_min  = round(float(min(scores)), 4)
+    if eligible.empty:
+        # Score trop bas : prendre les 20 filières les plus proches
+        nearby = df_raw[df_raw["Section_Bac"] == section].nsmallest(20, "Score_2025")
+        eligible = nearby
 
-    # Encodeur université/établissement : fallback sur mode si inconnu
-    univ_enc  = int(encoders["universite"].transform(
-        [req.universite])[0]) if req.universite and req.universite in encoders["universite"].classes_ else 0
-    etab_enc  = int(encoders["etablissement"].transform(
-        [req.etablissement])[0]) if req.etablissement and req.etablissement in encoders["etablissement"].classes_ else 0
+    # Distribution des domaines pondérée par la proximité du score
+    eligible = eligible.copy()
+    eligible["poids"] = 1.0 + (score - eligible["Score_2025"]).clip(lower=0) / score
 
-    X = np.array([[section_enc, s22, s23, s24, s25, mean_s, trend, stab, s_max, s_min, univ_enc, etab_enc]])
+    domain_scores = eligible.groupby("Domaine")["poids"].sum()
+    total = domain_scores.sum()
+    domain_pct = (domain_scores / total * 100).sort_values(ascending=False)
 
-    proba    = model.predict_proba(X)[0]
-    classes  = encoders["target"].classes_
-    top_idx  = np.argsort(proba)[::-1][:5]
+    top5 = domain_pct.head(5)
+    domaine_predit = top5.index[0]
 
     return {
         "status"            : "ok",
         "section"           : section,
-        "score_2025"        : s25,
-        "domaine_predit"    : classes[top_idx[0]],
-        "confiance_pct"     : round(float(proba[top_idx[0]]) * 100, 2),
+        "score_2025"        : score,
+        "domaine_predit"    : domaine_predit,
+        "confiance_pct"     : round(float(top5.iloc[0]), 2),
+        "nb_filieres"       : int(len(eligible)),
         "top_5_domaines"    : [
-            {"domaine": classes[i], "probabilite_pct": round(float(proba[i]) * 100, 2)}
-            for i in top_idx
+            {"domaine": dom, "probabilite_pct": round(float(pct), 2)}
+            for dom, pct in top5.items()
         ],
     }
