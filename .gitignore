@@ -18,6 +18,10 @@ data/mlruns/
 data/*.joblib
 data/*.pkl
 
+# Logs
+*.log
+logs/
+
 # Jupyter
 .ipynb_checkpoints/
 

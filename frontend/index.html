@@ -1,0 +1,1122 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduStat TN — Orientation Universitaire</title>
+    <style>
+      :root {
+        --primary: #e63946;
+        --primary-d: #c1121f;
+        --accent: #457b9d;
+        --accent-d: #1d3557;
+        --bg: #f8f9fa;
+        --card: #ffffff;
+        --text: #212529;
+        --muted: #6c757d;
+        --border: #dee2e6;
+        --success: #2a9d8f;
+        --warning: #e9c46a;
+        --radius: 12px;
+        --shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family:
+          "Segoe UI",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+      }
+
+      /* ── NAV ───────────────────────────────────────────── */
+      nav {
+        background: linear-gradient(
+          135deg,
+          var(--accent-d) 0%,
+          var(--primary-d) 100%
+        );
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+      }
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .nav-logo .logo-icon {
+        width: 38px;
+        height: 38px;
+        background: var(--primary);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+      }
+      .nav-logo h1 {
+        color: #fff;
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+      .nav-logo span {
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 0.8rem;
+      }
+      .nav-badge {
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+        border-radius: 20px;
+        padding: 0.3rem 0.8rem;
+        font-size: 0.78rem;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+      }
+
+      /* ── HERO ──────────────────────────────────────────── */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          var(--accent-d) 0%,
+          var(--primary-d) 100%
+        );
+        color: #fff;
+        text-align: center;
+        padding: 3rem 1rem 4rem;
+      }
+      .hero h2 {
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+        font-weight: 800;
+        margin-bottom: 0.6rem;
+      }
+      .hero p {
+        opacity: 0.8;
+        font-size: 1rem;
+        max-width: 550px;
+        margin: 0 auto;
+      }
+
+      /* ── STATS BAR ─────────────────────────────────────── */
+      .stats-bar {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 1.5rem 2rem;
+        background: var(--accent-d);
+        border-bottom: 3px solid var(--primary);
+      }
+      .stat-chip {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        padding: 0.5rem 1.2rem;
+        color: #fff;
+        text-align: center;
+        transition: background 0.2s;
+      }
+      .stat-chip:hover {
+        background: rgba(255, 255, 255, 0.18);
+      }
+      .stat-chip .num {
+        font-size: 1.4rem;
+        font-weight: 800;
+        display: block;
+      }
+      .stat-chip .lbl {
+        font-size: 0.72rem;
+        opacity: 0.75;
+      }
+
+      /* ── MAIN LAYOUT ───────────────────────────────────── */
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+      }
+
+      /* ── SEARCH CARD ───────────────────────────────────── */
+      .search-card {
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+      .search-card h3 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--accent-d);
+        margin-bottom: 1.4rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        align-items: end;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+      .form-group label {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .form-group select,
+      .form-group input {
+        border: 2px solid var(--border);
+        border-radius: 8px;
+        padding: 0.65rem 0.9rem;
+        font-size: 0.95rem;
+        color: var(--text);
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        outline: none;
+        background: var(--bg);
+      }
+      .form-group select:focus,
+      .form-group input:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.12);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.95rem;
+        font-weight: 700;
+        padding: 0.72rem 1.6rem;
+        transition: all 0.2s;
+        text-decoration: none;
+      }
+      .btn-primary {
+        background: var(--primary);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: var(--primary-d);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 16px rgba(230, 57, 70, 0.35);
+      }
+      .btn-secondary {
+        background: var(--accent);
+        color: #fff;
+      }
+      .btn-secondary:hover {
+        background: var(--accent-d);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+      }
+      .btn-outline:hover {
+        background: var(--primary);
+        color: #fff;
+      }
+      .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none !important;
+      }
+
+      /* ── TABS ──────────────────────────────────────────── */
+      .tabs {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+      }
+      .tab-btn {
+        padding: 0.55rem 1.2rem;
+        border-radius: 8px;
+        border: 2px solid var(--border);
+        background: var(--card);
+        cursor: pointer;
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--muted);
+        transition: all 0.2s;
+      }
+      .tab-btn.active {
+        border-color: var(--primary);
+        background: var(--primary);
+        color: #fff;
+      }
+      .tab-btn:hover:not(.active) {
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+      .tab-panel {
+        display: none;
+      }
+      .tab-panel.active {
+        display: block;
+      }
+
+      /* ── ALERT ─────────────────────────────────────────── */
+      .alert {
+        padding: 1rem 1.2rem;
+        border-radius: 8px;
+        margin-bottom: 1.2rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .alert-error {
+        background: #fff5f5;
+        border-left: 4px solid var(--primary);
+        color: #9b1c1c;
+      }
+      .alert-warning {
+        background: #fffbeb;
+        border-left: 4px solid var(--warning);
+        color: #78350f;
+      }
+      .alert-success {
+        background: #f0fdf4;
+        border-left: 4px solid var(--success);
+        color: #14532d;
+      }
+      .alert-info {
+        background: #eff6ff;
+        border-left: 4px solid var(--accent);
+        color: #1e3a5f;
+      }
+
+      /* ── LOADER ────────────────────────────────────────── */
+      .loader {
+        display: none;
+        text-align: center;
+        padding: 3rem 1rem;
+      }
+      .spinner {
+        width: 46px;
+        height: 46px;
+        border: 4px solid var(--border);
+        border-top-color: var(--primary);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin: 0 auto 1rem;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* ── RESULTS TABLE ─────────────────────────────────── */
+      .results-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-bottom: 1rem;
+      }
+      .results-header h4 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--accent-d);
+      }
+      .badge {
+        padding: 0.28rem 0.85rem;
+        border-radius: 20px;
+        font-size: 0.78rem;
+        font-weight: 700;
+      }
+      .badge-primary {
+        background: #fde8ea;
+        color: var(--primary-d);
+      }
+      .badge-success {
+        background: #d1fae5;
+        color: #065f46;
+      }
+      .badge-info {
+        background: #dbeafe;
+        color: #1e40af;
+      }
+      .badge-warning {
+        background: #fef3c7;
+        color: #78350f;
+      }
+      .badge-muted {
+        background: #f3f4f6;
+        color: var(--muted);
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.88rem;
+      }
+      thead th {
+        background: var(--accent-d);
+        color: #fff;
+        padding: 0.75rem 1rem;
+        text-align: left;
+        font-weight: 600;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        white-space: nowrap;
+      }
+      tbody tr {
+        border-bottom: 1px solid var(--border);
+        transition: background 0.15s;
+      }
+      tbody tr:last-child {
+        border-bottom: none;
+      }
+      tbody tr:hover {
+        background: #f0f7ff;
+      }
+      tbody td {
+        padding: 0.75rem 1rem;
+        color: var(--text);
+        vertical-align: middle;
+      }
+      .rank-cell {
+        font-weight: 800;
+        font-size: 1.05rem;
+        color: var(--primary);
+        width: 40px;
+        text-align: center;
+      }
+      .filiere-name {
+        font-weight: 600;
+        color: var(--accent-d);
+      }
+      .marge-bar {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        min-width: 120px;
+      }
+      .marge-track {
+        flex: 1;
+        height: 6px;
+        background: var(--border);
+        border-radius: 3px;
+        overflow: hidden;
+      }
+      .marge-fill {
+        height: 100%;
+        border-radius: 3px;
+        transition: width 0.4s;
+      }
+
+      /* ── PREDICT CARD ──────────────────────────────────── */
+      .predict-result {
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 1.8rem;
+        margin-top: 1.5rem;
+      }
+      .domaine-big {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: var(--accent-d);
+        margin: 0.5rem 0;
+      }
+      .confidence-bar-wrap {
+        margin: 1rem 0;
+      }
+      .confidence-label {
+        font-size: 0.82rem;
+        color: var(--muted);
+        margin-bottom: 0.4rem;
+        font-weight: 600;
+      }
+      .confidence-track {
+        height: 12px;
+        background: var(--border);
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .confidence-fill {
+        height: 100%;
+        border-radius: 6px;
+        background: linear-gradient(90deg, var(--success), var(--accent));
+      }
+      .top5-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        margin-top: 1rem;
+      }
+      .top5-item {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+      .top5-item .t5-label {
+        font-size: 0.85rem;
+        color: var(--text);
+        min-width: 200px;
+      }
+      .top5-item .t5-track {
+        flex: 1;
+        height: 8px;
+        background: var(--border);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .top5-item .t5-fill {
+        height: 100%;
+        border-radius: 4px;
+        background: var(--primary);
+        opacity: 0.75;
+      }
+      .top5-item .t5-pct {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--muted);
+        min-width: 42px;
+        text-align: right;
+      }
+
+      /* ── EMPTY / ERROR ───────────────────────────────────── */
+      .empty {
+        text-align: center;
+        padding: 4rem 1rem;
+        color: var(--muted);
+      }
+      .empty .big-icon {
+        font-size: 3.5rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      /* ── FOOTER ────────────────────────────────────────── */
+      footer {
+        text-align: center;
+        padding: 1.5rem;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.82rem;
+        margin-top: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <div class="nav-logo">
+        <div class="logo-icon">🎓</div>
+        <div>
+          <h1>EduStat TN</h1>
+          <span>Orientation Universitaire</span>
+        </div>
+      </div>
+      <span class="nav-badge" id="modelBadge">⚡ Chargement…</span>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+      <h2>Trouvez la filière qui vous correspond</h2>
+      <p>
+        Entrez votre section du bac et votre score pour obtenir des
+        recommandations personnalisées basées sur les données réelles
+        d'admission.
+      </p>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar" id="statsBar">
+      <div class="stat-chip">
+        <span class="num" id="statFilieres">—</span
+        ><span class="lbl">Filières</span>
+      </div>
+      <div class="stat-chip">
+        <span class="num" id="statUniversites">—</span
+        ><span class="lbl">Universités</span>
+      </div>
+      <div class="stat-chip">
+        <span class="num" id="statSections">—</span
+        ><span class="lbl">Sections Bac</span>
+      </div>
+      <div class="stat-chip">
+        <span class="num" id="statScoreMoyen">—</span
+        ><span class="lbl">Score Moyen 2025</span>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="container">
+      <!-- SEARCH CARD -->
+      <div class="search-card">
+        <h3>🔎 Rechercher des filières accessibles</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Section du Bac</label>
+            <select id="sectionSelect">
+              <option value="">— Choisir —</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Votre Score (sur ~220)</label>
+            <input
+              type="number"
+              id="scoreInput"
+              placeholder="ex: 145.0"
+              min="60"
+              max="225"
+              step="0.01"
+            />
+          </div>
+          <div class="form-group">
+            <label>Nombre de résultats</label>
+            <select id="topNSelect">
+              <option value="5">5</option>
+              <option value="10" selected>10</option>
+              <option value="20">20</option>
+              <option value="50">Tous</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Année de référence</label>
+            <select id="yearSelect">
+              <option value="Score_2025" selected>2025 (Recommandé)</option>
+              <option value="Score_2024">2024</option>
+              <option value="Score_2023">2023</option>
+              <option value="Score_2022">2022</option>
+            </select>
+          </div>
+        </div>
+        <div
+          style="
+            margin-top: 1.4rem;
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+          "
+        >
+          <button class="btn btn-primary" onclick="searchRecommendations()">
+            🔍 Chercher mes filières
+          </button>
+          <button class="btn btn-secondary" onclick="predictDomain()">
+            🤖 Prédire mon domaine (ML)
+          </button>
+          <button class="btn btn-outline" onclick="clearResults()">
+            ✕ Effacer
+          </button>
+        </div>
+      </div>
+
+      <!-- TABS -->
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('recommend')">
+          📋 Recommandations
+        </button>
+        <button class="tab-btn" onclick="switchTab('predict')">
+          🤖 Prédiction ML
+        </button>
+        <button class="tab-btn" onclick="switchTab('stats')">
+          📊 Statistiques
+        </button>
+      </div>
+
+      <!-- TAB : RECOMMANDATIONS -->
+      <div class="tab-panel active" id="tab-recommend">
+        <div class="loader" id="loaderRec">
+          <div class="spinner"></div>
+          <p style="color: var(--muted)">Recherche des filières en cours…</p>
+        </div>
+        <div id="alertRec"></div>
+        <div id="resultsRec">
+          <div class="empty">
+            <span class="big-icon">🎓</span>
+            <p>
+              Saisissez votre section et votre score, puis cliquez sur
+              <strong>Chercher</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB : PREDICTION ML -->
+      <div class="tab-panel" id="tab-predict">
+        <div class="loader" id="loaderPred">
+          <div class="spinner"></div>
+          <p style="color: var(--muted)">Prédiction ML en cours…</p>
+        </div>
+        <div id="alertPred"></div>
+        <div id="resultsPred">
+          <div class="empty">
+            <span class="big-icon">🤖</span>
+            <p>
+              Cliquez sur <strong>Prédire mon domaine</strong> pour utiliser le
+              modèle XGBoost.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB : STATS -->
+      <div class="tab-panel" id="tab-stats">
+        <div class="loader" id="loaderStats">
+          <div class="spinner"></div>
+          <p style="color: var(--muted)">Chargement des statistiques…</p>
+        </div>
+        <div id="resultsStats">
+          <div class="empty">
+            <span class="big-icon">📊</span>
+            <p>Cliquez sur l'onglet pour charger les statistiques.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      EduStat TN &mdash; Pipeline ML d'Orientation Universitaire &mdash; Tunisie
+      2025<br />
+      Modèle : XGBoost &bull; Données : 2022–2025 &bull;
+      <a href="/docs" style="color: var(--accent)">API Docs (Swagger)</a>
+    </footer>
+
+    <script>
+      // ── CONFIG ───────────────────────────────────────────────────
+      const API = "http://127.0.0.1:8000";
+
+      const DOMAIN_COLORS = {
+        "Informatique & Tech": "#4361ee",
+        "Ingénierie & Génie": "#3a86ff",
+        "Sciences Fondamentales": "#7209b7",
+        "Médecine & Santé": "#e63946",
+        "Économie & Gestion": "#2a9d8f",
+        "Droit & Sciences Sociales": "#e9c46a",
+        "Lettres & Langues": "#f4a261",
+        "Arts & Architecture": "#e76f51",
+        "Sciences Humaines": "#90be6d",
+        "Agronomie & Environnement": "#43aa8b",
+        Autres: "#6c757d",
+      };
+
+      let statsLoaded = false;
+
+      // ── INIT ─────────────────────────────────────────────────────
+      window.addEventListener("DOMContentLoaded", async () => {
+        await loadSections();
+        await loadTopStats();
+        await checkHealth();
+      });
+
+      async function checkHealth() {
+        try {
+          const r = await fetch(`${API}/`);
+          const d = await r.json();
+          document.getElementById("modelBadge").textContent =
+            `⚡ ${d.model} — Accuracy: ${(d.accuracy * 100).toFixed(1)}%`;
+        } catch {
+          document.getElementById("modelBadge").textContent =
+            "⚠️ API hors ligne";
+          document.getElementById("modelBadge").style.background =
+            "rgba(230,57,70,.4)";
+        }
+      }
+
+      async function loadSections() {
+        try {
+          const r = await fetch(`${API}/api/sections`);
+          const sections = await r.json();
+          const el = document.getElementById("sectionSelect");
+          sections.forEach((s) => {
+            const opt = document.createElement("option");
+            opt.value = s.code;
+            opt.textContent = `${s.code} — ${s.label}`;
+            el.appendChild(opt);
+          });
+        } catch {
+          /* offline */
+        }
+      }
+
+      async function loadTopStats() {
+        try {
+          const r = await fetch(`${API}/api/stats`);
+          const d = await r.json();
+          document.getElementById("statFilieres").textContent =
+            d.total_filieres;
+          document.getElementById("statUniversites").textContent =
+            d.total_universites;
+          document.getElementById("statSections").textContent =
+            d.total_sections;
+          document.getElementById("statScoreMoyen").textContent =
+            d.score_moyen_2025?.toFixed(1);
+        } catch {
+          /* offline */
+        }
+      }
+
+      // ── TABS ─────────────────────────────────────────────────────
+      function switchTab(name) {
+        document.querySelectorAll(".tab-btn").forEach((b, i) => {
+          const tabs = ["recommend", "predict", "stats"];
+          b.classList.toggle("active", tabs[i] === name);
+        });
+        document.querySelectorAll(".tab-panel").forEach((p) => {
+          p.classList.toggle("active", p.id === `tab-${name}`);
+        });
+        if (name === "stats" && !statsLoaded) loadStatsTab();
+      }
+
+      // ── RECOMMEND ────────────────────────────────────────────────
+      async function searchRecommendations() {
+        const section = document.getElementById("sectionSelect").value;
+        const score = parseFloat(document.getElementById("scoreInput").value);
+        const topN = parseInt(document.getElementById("topNSelect").value);
+        const year = document.getElementById("yearSelect").value;
+
+        if (!section || isNaN(score)) {
+          showAlert(
+            "alertRec",
+            "error",
+            "⚠️ Veuillez choisir une section et saisir un score valide.",
+          );
+          return;
+        }
+
+        switchTab("recommend");
+        showLoader("loaderRec", true);
+        clearEl("alertRec");
+        clearEl("resultsRec");
+
+        try {
+          const r = await fetch(`${API}/api/recommend`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              section_bac: section,
+              score_etudiant: score,
+              top_n: topN,
+              year_ref: year,
+            }),
+          });
+          if (!r.ok) {
+            const e = await r.json();
+            throw new Error(e.detail || "Erreur serveur");
+          }
+          const d = await r.json();
+          renderRecommendations(d);
+        } catch (e) {
+          showAlert("alertRec", "error", `❌ ${e.message}`);
+        } finally {
+          showLoader("loaderRec", false);
+        }
+      }
+
+      function renderRecommendations(d) {
+        const el = document.getElementById("resultsRec");
+
+        if (d.status === "score_bas") {
+          showAlert("alertRec", "warning", `⚠️ ${d.message}`);
+          if (!d.suggestions?.length) return;
+          el.innerHTML = `
+        <div class="results-header">
+          <h4>💡 Filières les plus proches de votre score</h4>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr>
+              <th>#</th><th>Filière</th><th>Université</th><th>Domaine</th>
+              <th>Seuil 2025</th><th>Écart</th>
+            </tr></thead>
+            <tbody>${d.suggestions
+              .map(
+                (r, i) => `
+              <tr>
+                <td class="rank-cell">${i + 1}</td>
+                <td class="filiere-name">${r.Filiere}</td>
+                <td>${shortUniv(r.Universite)}</td>
+                <td><span class="badge badge-muted">${r.Domaine}</span></td>
+                <td>${r.Score_2025?.toFixed(2) ?? "—"}</td>
+                <td style="color:var(--primary);font-weight:700">+${r.ecart?.toFixed(2)}</td>
+              </tr>`,
+              )
+              .join("")}
+            </tbody>
+          </table>
+        </div>`;
+          return;
+        }
+
+        const recs = d.recommendations;
+        if (!recs?.length) {
+          el.innerHTML =
+            '<div class="empty"><span class="big-icon">😕</span><p>Aucun résultat trouvé.</p></div>';
+          return;
+        }
+
+        const maxMarge = Math.max(...recs.map((r) => r.marge));
+
+        el.innerHTML = `
+      <div class="results-header">
+        <h4>📋 ${recs.length} filière(s) recommandée(s)</h4>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+          <span class="badge badge-info">Section ${d.section} — ${d.section_label}</span>
+          <span class="badge badge-primary">Score : ${d.score_etudiant}</span>
+          <span class="badge badge-success">${d.total_eligible} filières accessibles</span>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>#</th><th>Filière</th><th>Université</th><th>Domaine</th>
+            <th>Seuil Admission</th><th>Moy. Hist.</th><th>Marge</th><th>Compat.</th>
+          </tr></thead>
+          <tbody>${recs
+            .map((r, i) => {
+              const color = DOMAIN_COLORS[r.Domaine] ?? "#6c757d";
+              const pct = maxMarge > 0 ? (r.marge / maxMarge) * 100 : 0;
+              return `<tr>
+              <td class="rank-cell">${i + 1}</td>
+              <td class="filiere-name">${r.Filiere}</td>
+              <td style="font-size:.82rem;color:var(--muted)">${shortUniv(r.Universite)}</td>
+              <td><span class="badge" style="background:${color}18;color:${color}">${r.Domaine}</span></td>
+              <td style="font-weight:700">${r.seuil_admission?.toFixed(2)}</td>
+              <td>${r.moyenne_historique?.toFixed(2)}</td>
+              <td>
+                <div class="marge-bar">
+                  <span style="font-weight:700;min-width:38px">${r.marge?.toFixed(2)}</span>
+                  <div class="marge-track">
+                    <div class="marge-fill" style="width:${pct}%;background:${color}"></div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="badge ${r.compatibilite_pct > 5 ? "badge-success" : r.compatibilite_pct > 1 ? "badge-info" : "badge-warning"}">${r.compatibilite_pct?.toFixed(1)}%</span></td>
+            </tr>`;
+            })
+            .join("")}
+          </tbody>
+        </table>
+      </div>`;
+      }
+
+      // ── PREDICT ──────────────────────────────────────────────────
+      async function predictDomain() {
+        const section = document.getElementById("sectionSelect").value;
+        const score = parseFloat(document.getElementById("scoreInput").value);
+
+        if (!section || isNaN(score)) {
+          switchTab("predict");
+          showAlert(
+            "alertPred",
+            "error",
+            "⚠️ Veuillez choisir une section et saisir un score valide.",
+          );
+          return;
+        }
+
+        switchTab("predict");
+        showLoader("loaderPred", true);
+        clearEl("alertPred");
+        clearEl("resultsPred");
+
+        try {
+          const r = await fetch(`${API}/api/predict`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ section_bac: section, score_2025: score }),
+          });
+          if (!r.ok) {
+            const e = await r.json();
+            throw new Error(e.detail || "Erreur serveur");
+          }
+          const d = await r.json();
+          renderPrediction(d);
+        } catch (e) {
+          showAlert("alertPred", "error", `❌ ${e.message}`);
+        } finally {
+          showLoader("loaderPred", false);
+        }
+      }
+
+      function renderPrediction(d) {
+        const el = document.getElementById("resultsPred");
+        const color = DOMAIN_COLORS[d.domaine_predit] ?? "#457b9d";
+        const maxP = d.top_5_domaines[0].probabilite_pct;
+
+        el.innerHTML = `
+      <div class="predict-result">
+        <p style="color:var(--muted);font-size:.88rem;font-weight:600;">DOMAINE PRÉDIT PAR LE MODÈLE XGBOOST</p>
+        <div class="domaine-big" style="color:${color}">${d.domaine_predit}</div>
+        <div class="confidence-bar-wrap">
+          <div class="confidence-label">Confiance : ${d.confiance_pct}%</div>
+          <div class="confidence-track">
+            <div class="confidence-fill" style="width:${d.confiance_pct}%"></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem;">
+          <span class="badge badge-info">Section ${d.section}</span>
+          <span class="badge badge-primary">Score 2025 : ${d.score_2025}</span>
+        </div>
+        <p style="font-size:.88rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.6rem;">Top 5 Domaines Probables</p>
+        <div class="top5-grid">
+          ${d.top_5_domaines
+            .map((t, i) => {
+              const c = DOMAIN_COLORS[t.domaine] ?? "#6c757d";
+              return `<div class="top5-item">
+              <span class="t5-label">${i === 0 ? "⭐ " : ""}${t.domaine}</span>
+              <div class="t5-track"><div class="t5-fill" style="width:${((t.probabilite_pct / maxP) * 100).toFixed(1)}%;background:${c}"></div></div>
+              <span class="t5-pct">${t.probabilite_pct}%</span>
+            </div>`;
+            })
+            .join("")}
+        </div>
+        <div class="alert alert-info" style="margin-top:1.2rem;font-size:.82rem;">
+          ℹ️ Cette prédiction est basée sur des données historiques 2022–2025. Elle donne une orientation générale ; confirmez avec un conseiller d'orientation.
+        </div>
+      </div>`;
+      }
+
+      // ── STATS TAB ────────────────────────────────────────────────
+      async function loadStatsTab() {
+        statsLoaded = true;
+        showLoader("loaderStats", true);
+        try {
+          const r = await fetch(`${API}/api/stats`);
+          const d = await r.json();
+          renderStats(d);
+        } catch (e) {
+          document.getElementById("resultsStats").innerHTML =
+            '<div class="alert alert-error">❌ Impossible de charger les statistiques. Vérifiez que le serveur est démarré.</div>';
+        } finally {
+          showLoader("loaderStats", false);
+        }
+      }
+
+      function renderStats(d) {
+        const el = document.getElementById("resultsStats");
+        const topFil = d.top_filieres_selectives || [];
+
+        el.innerHTML = `
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:1.5rem;">
+        ${[
+          ["📚", "Filières", d.total_filieres, "badge-info"],
+          ["🏛️", "Universités", d.total_universites, "badge-success"],
+          ["📋", "Sections Bac", d.total_sections, "badge-primary"],
+          [
+            "📈",
+            "Score Moyen 2025",
+            d.score_moyen_2025?.toFixed(2),
+            "badge-warning",
+          ],
+          [
+            "⬆️",
+            "Score Max 2025",
+            d.score_max_2025?.toFixed(2),
+            "badge-success",
+          ],
+          ["⬇️", "Score Min 2025", d.score_min_2025?.toFixed(2), "badge-muted"],
+        ]
+          .map(
+            ([icon, label, val, badge]) => `
+          <div style="background:var(--card);border-radius:10px;padding:1.2rem;box-shadow:var(--shadow);text-align:center;">
+            <div style="font-size:1.8rem">${icon}</div>
+            <div style="font-size:1.5rem;font-weight:800;margin:.3rem 0">${val}</div>
+            <span class="badge ${badge}">${label}</span>
+          </div>`,
+          )
+          .join("")}
+      </div>
+      <div style="background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.5rem;margin-bottom:1.5rem;">
+        <h4 style="font-weight:700;margin-bottom:1rem;color:var(--accent-d)">🏆 Top 5 Filières les plus Sélectives (Score Max 2025)</h4>
+        ${topFil
+          .map(
+            (f, i) => `
+          <div style="display:flex;align-items:center;gap:.8rem;padding:.6rem 0;border-bottom:1px solid var(--border);">
+            <span style="font-size:1.3rem;min-width:30px">${["🥇", "🥈", "🥉", "4️⃣", "5️⃣"][i]}</span>
+            <span style="flex:1;font-weight:600">${f.Filiere}</span>
+            <span class="badge badge-primary">${f.score_max?.toFixed(2)}</span>
+          </div>`,
+          )
+          .join("")}
+      </div>
+      <div style="background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.5rem;">
+        <h4 style="font-weight:700;margin-bottom:.8rem;color:var(--accent-d)">🤖 Performances du Modèle XGBoost</h4>
+        ${[
+          ["Accuracy", "accuracy", "badge-success"],
+          ["F1 Weighted", "f1_weighted", "badge-info"],
+          ["Précision", "precision_weighted", "badge-primary"],
+          ["Rappel", "recall_weighted", "badge-warning"],
+        ]
+          .map(
+            ([label, key, badge]) => `
+          <div style="display:flex;align-items:center;gap:.8rem;padding:.5rem 0;">
+            <span style="min-width:130px;font-size:.88rem;font-weight:600">${label}</span>
+            <div style="flex:1;height:10px;background:var(--border);border-radius:5px;overflow:hidden;">
+              <div style="height:100%;width:${(d.model[key] * 100).toFixed(1)}%;background:var(--accent);border-radius:5px"></div>
+            </div>
+            <span class="badge ${badge}">${(d.model[key] * 100).toFixed(1)}%</span>
+          </div>`,
+          )
+          .join("")}
+      </div>`;
+      }
+
+      // ── HELPERS ──────────────────────────────────────────────────
+      function shortUniv(u) {
+        if (!u) return "—";
+        return u
+          .replace("Université de ", "Univ. ")
+          .replace("Université d'", "Univ. ");
+      }
+      function showLoader(id, show) {
+        document.getElementById(id).style.display = show ? "block" : "none";
+      }
+      function clearEl(id) {
+        document.getElementById(id).innerHTML = "";
+      }
+      function clearResults() {
+        ["alertRec", "alertPred", "alertStats"].forEach(clearEl);
+        document.getElementById("resultsRec").innerHTML =
+          '<div class="empty"><span class="big-icon">🎓</span><p>Saisissez votre section et votre score, puis cliquez sur <strong>Chercher</strong>.</p></div>';
+        document.getElementById("resultsPred").innerHTML =
+          '<div class="empty"><span class="big-icon">🤖</span><p>Cliquez sur <strong>Prédire mon domaine</strong>.</p></div>';
+        document.getElementById("sectionSelect").value = "";
+        document.getElementById("scoreInput").value = "";
+      }
+      function showAlert(containerId, type, msg) {
+        document.getElementById(containerId).innerHTML =
+          `<div class="alert alert-${type}">${msg}</div>`;
+      }
+    </script>
+  </body>
+</html>
